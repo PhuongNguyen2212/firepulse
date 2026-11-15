@@ -12,7 +12,7 @@ Fire Pulse turns NASA's satellite fire record into one consistent burning-activi
 [public link to the slide deck: export the deck as PDF and share it publicly, e.g. Google Drive "Anyone with the link"]
 
 ## Link to Final Project
-[https://<your-username>.github.io/fire-pulse/]  (code: [https://github.com/<your-username>/fire-pulse])
+https://phuongnguyen2212.github.io/firepulse/  (code: https://github.com/PhuongNguyen2212/firepulse)
 
 ## Detailed Project Description
 **What it does.** Fire Pulse harmonises NASA FIRMS active-fire detections from MODIS (Terra and Aqua, Collection 6.1) and VIIRS 375 m (NOAA-20) into a single MODIS-equivalent record, and presents it as an interactive burning-activity calendar for Australia, 2023–2025.

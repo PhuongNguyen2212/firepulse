@@ -49,7 +49,7 @@ VIIRS has smaller pixels (375 m vs 1 km) and much better night-time sensitivity,
 
 ## Live demo
 
-Hosted on GitHub Pages from the `docs/` folder: `https://<your-username>.github.io/fire-pulse/`
+Hosted on GitHub Pages from the `docs/` folder: https://phuongnguyen2212.github.io/firepulse/
 
 ## Run it
 
