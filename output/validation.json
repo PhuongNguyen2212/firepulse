@@ -1,0 +1,40 @@
+{
+  "detections": {
+    "train_until": "2025-01-01",
+    "national_factor": 0.2312,
+    "test_cells": 1328,
+    "results": {
+      "identity (no harmonisation)": {
+        "median_cell_error_pct": 349.8,
+        "weekly_national_error_pct": 376.3
+      },
+      "national factor": {
+        "median_cell_error_pct": 21.3,
+        "weekly_national_error_pct": 14.2
+      },
+      "cell factor + shrinkage (Fire Pulse)": {
+        "median_cell_error_pct": 18.7,
+        "weekly_national_error_pct": 11.4
+      }
+    }
+  },
+  "frp": {
+    "train_until": "2025-01-01",
+    "national_factor": 1.5479,
+    "test_cells": 1904,
+    "results": {
+      "identity (no harmonisation)": {
+        "median_cell_error_pct": 41.5,
+        "weekly_national_error_pct": 24.6
+      },
+      "national factor": {
+        "median_cell_error_pct": 59.7,
+        "weekly_national_error_pct": 40.9
+      },
+      "cell factor + shrinkage (Fire Pulse)": {
+        "median_cell_error_pct": 48.8,
+        "weekly_national_error_pct": 26.2
+      }
+    }
+  }
+}

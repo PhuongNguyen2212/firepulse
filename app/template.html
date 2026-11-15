@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="Fire Pulse; code drafted with AI assistance (Claude, Anthropic)">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fire Pulse</title>
+<style>
+/* Layout idea: a fire manager's console — pick a place on the map, read its burning calendar, then see why harmonisation matters. */
+:root {
+  color-scheme: light;
+  --bg: #f6f5f2;
+  --surface: #fcfcfb;
+  --surface-2: #efede8;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --muted: #898781;
+  --grid: #e1e0d9;
+  --axis: #c3c2b7;
+  --ring: rgba(11,11,11,0.10);
+  --accent: #c9501f;
+  --accent-ink: #ffffff;
+  --s-modis: #2a78d6;
+  --s-viirs: #eb6834;
+  --s-harm: #1baf7a;
+  --land: #e9e7e1;
+  --coast: #b9b6ac;
+  --sel: #0b0b0b;
+  --heat-0: #efede8;
+  --heat-1: #fde4d6; --heat-2: #fbc3a6; --heat-3: #f69d73; --heat-4: #eb6834;
+  --heat-5: #c9501f; --heat-6: #9c3b14; --heat-7: #6e290d;
+  --good: #006300; --warn-bg: #fde7c0; --warn-ink: #7a4d00; --low-bg: #dbe8f8; --low-ink: #184f95;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0f0f0e; --surface: #1a1a19; --surface-2: #242422;
+    --ink: #f0efec; --ink-2: #c3c2b7; --muted: #898781;
+    --grid: #2c2c2a; --axis: #383835; --ring: rgba(255,255,255,0.10);
+    --accent: #e8743f; --accent-ink: #0b0b0b;
+    --s-modis: #3987e5; --s-viirs: #d95926; --s-harm: #199e70;
+    --land: #262624; --coast: #4a4a46; --sel: #f0efec;
+    --heat-0: #242422;
+    --heat-1: #4a2414; --heat-2: #6e3018; --heat-3: #96401c; --heat-4: #c4541f;
+    --heat-5: #e8743f; --heat-6: #f5a273; --heat-7: #fcd2b5;
+    --good: #0ca30c; --warn-bg: #4a3500; --warn-ink: #fab219; --low-bg: #16314f; --low-ink: #86b6ef;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0f0f0e; --surface: #1a1a19; --surface-2: #242422;
+  --ink: #f0efec; --ink-2: #c3c2b7; --muted: #898781;
+  --grid: #2c2c2a; --axis: #383835; --ring: rgba(255,255,255,0.10);
+  --accent: #e8743f; --accent-ink: #0b0b0b;
+  --s-modis: #3987e5; --s-viirs: #d95926; --s-harm: #199e70;
+  --land: #262624; --coast: #4a4a46; --sel: #f0efec;
+  --heat-0: #242422;
+  --heat-1: #4a2414; --heat-2: #6e3018; --heat-3: #96401c; --heat-4: #c4541f;
+  --heat-5: #e8743f; --heat-6: #f5a273; --heat-7: #fcd2b5;
+  --good: #0ca30c; --warn-bg: #4a3500; --warn-ink: #fab219; --low-bg: #16314f; --low-ink: #86b6ef;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.5 var(--font); }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 24px 20px 64px; display: grid; gap: 20px; }
+header { display: grid; gap: 6px; }
+.brand { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+h1 { font-size: 30px; line-height: 1.1; margin: 0; letter-spacing: -0.02em; text-wrap: balance; }
+h1 .dot { color: var(--accent); }
+.sub { color: var(--ink-2); margin: 0; max-width: 72ch; }
+.tag { font-size: 12px; color: var(--muted); border: 1px solid var(--ring); border-radius: 999px; padding: 2px 10px; }
+h2 { font-size: 18px; margin: 0; text-wrap: balance; }
+h3 { font-size: 14px; margin: 0; color: var(--ink-2); font-weight: 600; }
+.card { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px; display: grid; gap: 14px; min-width: 0; }
+.card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+.card-head p { margin: 2px 0 0; color: var(--ink-2); font-size: 14px; max-width: 70ch; }
+.tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.tile { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 14px 16px; display: grid; gap: 2px; }
+.tile .k { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.tile .v { font-size: 26px; font-weight: 650; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.tile .n { font-size: 13px; color: var(--ink-2); }
+.top { display: grid; grid-template-columns: 380px minmax(0, 1fr); gap: 20px; align-items: start; }
+.presets { display: flex; flex-wrap: wrap; gap: 6px; }
+button { font: inherit; }
+.chip { font-size: 13px; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface-2); color: var(--ink); cursor: pointer; }
+.chip:hover { border-color: var(--muted); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.chip:focus-visible, .seg button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.seg { display: inline-flex; border: 1px solid var(--ring); border-radius: 8px; overflow: hidden; }
+.seg button { border: 0; background: var(--surface); color: var(--ink-2); padding: 6px 12px; font-size: 13px; cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--ring); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
+#map { width: 100%; aspect-ratio: 1.08; display: block; border-radius: 8px; background: var(--surface-2); touch-action: none; cursor: crosshair; }
+.hint { font-size: 12px; color: var(--muted); margin: 0; }
+.regionline { font-size: 14px; color: var(--ink-2); }
+.regionline b { color: var(--ink); }
+.glance { margin: 6px 0 0; font-size: 14px; color: var(--ink); background: var(--surface-2); border-left: 3px solid var(--accent); padding: 8px 10px; border-radius: 0 8px 8px 0; max-width: 70ch; }
+.cal-wrap { overflow-x: auto; }
+canvas.cal { display: block; }
+.legend { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); flex-wrap: wrap; }
+.legend .sw { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
+.legend .key { display: inline-flex; align-items: center; gap: 6px; margin-right: 10px; color: var(--ink-2); }
+.legend .line { width: 18px; height: 3px; border-radius: 2px; display: inline-block; }
+.legend button.key { background: none; border: 1px solid transparent; border-radius: 6px; padding: 2px 6px; cursor: pointer; }
+.legend button.key[aria-pressed="false"] { opacity: 0.4; text-decoration: line-through; }
+svg { display: block; width: 100%; height: auto; overflow: visible; }
+svg text { fill: var(--muted); font: 11px var(--font); font-variant-numeric: tabular-nums; }
+.two { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+.callout { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
+.callout div { background: var(--surface-2); border-radius: 10px; padding: 10px 12px; }
+.callout .big { font-size: 22px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.callout .lbl { font-size: 12px; color: var(--ink-2); }
+.slider { display: grid; gap: 4px; font-size: 13px; color: var(--ink-2); }
+input[type=range] { width: 100%; accent-color: var(--accent); }
+table { border-collapse: collapse; width: 100%; font-size: 13px; font-variant-numeric: tabular-nums; }
+th, td { padding: 6px 8px; text-align: right; border-bottom: 1px solid var(--grid); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+th { color: var(--muted); font-weight: 600; font-size: 12px; }
+.pill { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 999px; margin-left: 6px; }
+.pill.high { background: var(--warn-bg); color: var(--warn-ink); }
+.pill.low { background: var(--low-bg); color: var(--low-ink); }
+.peaks { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; font-size: 14px; }
+.peaks li { display: grid; grid-template-columns: 22px 1fr auto; gap: 8px; align-items: center; }
+.peaks .rank { color: var(--muted); font-variant-numeric: tabular-nums; }
+.peaks .bar { height: 6px; border-radius: 3px; background: var(--heat-5); }
+.peaks .val { font-variant-numeric: tabular-nums; color: var(--ink-2); }
+.method { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; }
+.method p, .method li { color: var(--ink-2); font-size: 14px; margin: 0; }
+.method ol { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.formula { align-self: start; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; background: var(--surface-2); padding: 8px 10px; border-radius: 8px; color: var(--ink); }
+.tablewrap { overflow-x: auto; }
+#tip { position: fixed; pointer-events: none; z-index: 10; background: var(--ink); color: var(--surface); font-size: 12px; line-height: 1.45; padding: 7px 9px; border-radius: 8px; max-width: 240px; opacity: 0; transition: opacity .08s; font-variant-numeric: tabular-nums; }
+#tip b { font-weight: 650; }
+footer { color: var(--muted); font-size: 12px; }
+footer a { color: var(--ink-2); }
+@media (max-width: 960px) { .top, .two, .method { grid-template-columns: 1fr; } .tiles { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (max-width: 420px) { .wrap { padding: 16px 16px 48px; } .tile .v { font-size: 22px; } h1 { font-size: 26px; } }
+@media (prefers-reduced-motion: reduce) { #tip { transition: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand"><h1>Fire Pulse<span class="dot">.</span></h1><span class="tag">NASA Space Apps 2026 · Harmonization of MODIS and VIIRS Hot Spots</span></div>
+    <p class="sub">A burning-activity calendar for Australia, 2023–2025. VIIRS detections are rescaled to the MODIS baseline so the satellite record can be read as one consistent series.</p>
+  </header>
+
+  <section class="tiles" aria-label="Key results">
+    <div class="tile"><span class="k">Conversion factor K</span><span class="v" id="t-k">–</span><span class="n" id="t-k-n">MODIS ÷ VIIRS, learned on 2023–2024</span></div>
+    <div class="tile"><span class="k">VIIRS sees</span><span class="v" id="t-x">–</span><span class="n">more detections than MODIS for the same fires</span></div>
+    <div class="tile"><span class="k">2025 test, weekly error</span><span class="v" id="t-err">–</span><span class="n" id="t-err-n">–</span></div>
+    <div class="tile"><span class="k">Detections processed</span><span class="v" id="t-rows">–</span><span class="n" id="t-rows-n">–</span></div>
+  </section>
+
+  <div class="top">
+    <section class="card" aria-labelledby="h-map">
+      <div class="card-head"><div><h2 id="h-map">1 · Choose a region</h2><p>Drag a box on the map, or pick a preset.</p></div></div>
+      <div class="presets" id="presets"></div>
+      <canvas id="map" aria-label="Map of Australia shaded by harmonised fire activity. Drag to select a region."></canvas>
+      <p class="hint">Each square is 0.5° (about 50 km), shaded by total harmonised detections 2023–2025.</p>
+    </section>
+
+    <section class="card" aria-labelledby="h-cal">
+      <div class="card-head">
+        <div><h2 id="h-cal">2 · Burning calendar</h2><p class="regionline" id="regionline">–</p><p class="glance" id="glance">–</p></div>
+        <div class="seg" role="group" aria-label="Calendar data" id="calmode">
+          <button type="button" data-m="H" aria-pressed="true">Harmonised</button>
+          <button type="button" data-m="M" aria-pressed="false">MODIS raw</button>
+          <button type="button" data-m="V" aria-pressed="false">VIIRS raw</button>
+        </div>
+      </div>
+      <div class="cal-wrap"><canvas class="cal" id="cal"></canvas></div>
+      <div class="legend" id="callegend"></div>
+      <p class="hint" id="calhint">One square per day. All three views share one colour scale, so the raw VIIRS view shows how much hotter the record looks without harmonisation.</p>
+    </section>
+  </div>
+
+  <div class="two">
+    <section class="card" aria-labelledby="h-season">
+      <div class="card-head"><div><h2 id="h-season">3 · Fire season timing</h2><p>When each year's burning started, peaked and ended in this region, so crews can plan for the critical period.</p></div></div>
+      <div class="tablewrap"><table id="seasontable"></table></div>
+      <p class="hint">Start, midpoint and end are the dates by which 10%, 50% and 90% of the calendar year's harmonised activity had happened. Southern regions whose season spans December–February are better read from the calendar.</p>
+    </section>
+    <section class="card" aria-labelledby="h-typical">
+      <div class="card-head">
+        <div><h2 id="h-typical">4 · Is this year unusual?</h2><p>One year against the range of all years, week by week.</p></div>
+        <div class="seg" role="group" aria-label="Year to compare" id="yearpick"></div>
+      </div>
+      <div class="legend" id="typlegend"></div>
+      <div id="typical"></div>
+    </section>
+  </div>
+
+  <section class="card" aria-labelledby="h-week">
+    <div class="card-head"><div><h2 id="h-week">5 · Weekly activity: raw vs harmonised</h2><p>When the harmonised line sits on the MODIS line, the conversion works. Raw VIIRS shows the gap that harmonisation closes.</p></div></div>
+    <div class="legend" id="weeklegend"></div>
+    <div id="weekly"></div>
+  </section>
+
+  <div class="two">
+    <section class="card" aria-labelledby="h-false">
+      <div class="card-head"><div><h2 id="h-false">6 · The false trend</h2><p>Long fire records switch satellites. Pick the month the record switches from MODIS to VIIRS and compare what each version claims.</p></div></div>
+      <div class="slider"><label for="switch">Record switches to VIIRS in <b id="switchlbl">–</b></label><input type="range" id="switch" min="3" max="33" value="18"></div>
+      <div class="callout">
+        <div><div class="big" id="fx-raw">–</div><div class="lbl">Raw switch: apparent jump in fire activity</div></div>
+        <div><div class="big" id="fx-harm">–</div><div class="lbl">Harmonised switch: difference from MODIS</div></div>
+      </div>
+      <div class="legend" id="falselegend"></div>
+      <div id="falsechart"></div>
+    </section>
+
+    <section class="card" aria-labelledby="h-peak">
+      <div class="card-head"><div><h2 id="h-peak">7 · Peaks and unusual months</h2><p>Busiest weeks, and each month compared with the same month in the other years.</p></div></div>
+      <h3>Busiest weeks</h3>
+      <ol class="peaks" id="peaks"></ol>
+      <h3>Monthly activity (harmonised detections)</h3>
+      <div class="tablewrap"><table id="monthtable"></table></div>
+      <p class="hint">High: at least 1.5× the month's 3-year average. Low: at most half of it. With the full 2003–present archive this becomes a 20-year baseline.</p>
+    </section>
+  </div>
+
+  <section class="card" aria-labelledby="h-method">
+    <div class="card-head"><div><h2 id="h-method">8 · Method and validation</h2><p id="sourceline">–</p></div></div>
+    <div class="method">
+      <div style="display:grid;gap:10px">
+        <ol>
+          <li><b>Clean.</b> Keep vegetation fires (type 0): MODIS confidence ≥ 30, VIIRS confidence nominal or high.</li>
+          <li><b>Grid.</b> Count detections per 0.5° square per day, separately for each sensor. A detection is a fire pixel, not a whole fire.</li>
+          <li><b>Calibrate.</b> Learn how many MODIS detections match one VIIRS detection, per square, pulled toward the national factor where a square has little data.</li>
+          <li><b>Validate.</b> Learn on 2023–2024, test on 2025, a year the model never saw.</li>
+        </ol>
+        <div class="formula">K = ΣMODIS ÷ ΣVIIRS<br>k<sub>cell</sub> = (M<sub>cell</sub> + λ·K) ÷ (V<sub>cell</sub> + λ), λ = 200<br>Harmonised = VIIRS × k<sub>cell</sub></div>
+      </div>
+      <div style="display:grid;gap:14px">
+        <div><h3>2025 test (never seen during calibration)</h3><div class="tablewrap"><table id="valtable"></table></div></div>
+        <div><h3>Stability: K by year, day and night</h3><div class="tablewrap"><table id="yeartable"></table></div></div>
+        <p id="finding">–</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>Built with help from Claude (Anthropic AI assistant) for code and text; see the project README. Data: NASA FIRMS (Fire Information for Resource Management System). Fire Pulse is a hackathon prototype for exploring historical patterns, not an operational warning tool.</footer>
+</div>
+<div id="tip" role="tooltip"></div>
+
+<script id="data" type="application/json">/*__DATA__*/</script>
+<script>
+(function () {
+  "use strict";
+  const D = JSON.parse(document.getElementById("data").textContent);
+  const META = D.meta, G = META.grid_deg, N = META.days;
+  const START = Date.parse(META.start + "T00:00:00Z");
+  const DAY = 864e5;
+  const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const fmt = (x) => Math.round(x).toLocaleString("en-AU");
+  const fmt1 = (x, d = 1) => x.toLocaleString("en-AU", { minimumFractionDigits: d, maximumFractionDigits: d });
+  const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const dateOf = (i) => new Date(START + i * DAY);
+  const dstr = (i) => { const d = dateOf(i); return d.getUTCDate() + " " + MONTHS[d.getUTCMonth()] + " " + d.getUTCFullYear(); };
+
+  // ---------- cells ----------
+  const cells = Object.entries(D.cells).map(([key, c]) => {
+    const [gy, gx] = key.split("_").map(Number);
+    let h = 0; for (const r of c.s) h += r[2] * c.kn;
+    return { gy, gx, k: c.kn, s: c.s, lat0: gy * G, lon0: gx * G, h };
+  });
+  // day -> year/month index
+  const dayY = new Int16Array(N), dayM = new Int16Array(N);
+  const years = [];
+  for (let i = 0; i < N; i++) { const d = dateOf(i); dayY[i] = d.getUTCFullYear(); dayM[i] = d.getUTCMonth(); if (!years.includes(dayY[i])) years.push(dayY[i]); }
+  const monthIdx = (i) => (dayY[i] - years[0]) * 12 + dayM[i];
+  const NMON = years.length * 12;
+
+  // ---------- region ----------
+  const PRESETS = [
+    { id: "aus", name: "All Australia", box: null },
+    { id: "topend", name: "Top End (NT)", box: [-16, 129, -10.5, 138] },
+    { id: "kimberley", name: "Kimberley (WA)", box: [-19, 121, -13.5, 129] },
+    { id: "cape", name: "Cape York (QLD)", box: [-16, 141, -10, 146] },
+    { id: "central", name: "Central Australia", box: [-27, 129, -20, 138] },
+    { id: "seq", name: "South East QLD", box: [-28.7, 151, -26, 153.6] },
+    { id: "swwa", name: "South West WA", box: [-35.2, 114.9, -30, 119.5] },
+  ];
+  let region = { name: "All Australia", box: null, preset: "aus" };
+  const inBox = (c, b) => !b || (c.lat0 + G > b[0] && c.lat0 < b[2] && c.lon0 + G > b[1] && c.lon0 < b[3]);
+
+  function aggregate() {
+    const M = new Float64Array(N), V = new Float64Array(N), H = new Float64Array(N);
+    let n = 0;
+    for (const c of cells) {
+      if (!inBox(c, region.box)) continue; n++;
+      for (const r of c.s) { M[r[0]] += r[1]; V[r[0]] += r[2]; H[r[0]] += r[2] * c.k; }
+    }
+    return { M, V, H, n };
+  }
+  let A = null;
+  let calMode = "H";
+
+  // ---------- tooltip ----------
+  const tip = document.getElementById("tip");
+  function showTip(html, x, y) {
+    tip.innerHTML = html; tip.style.opacity = 1;
+    const w = tip.offsetWidth, h = tip.offsetHeight;
+    let left = x + 14, top = y + 14;
+    if (left + w > innerWidth - 8) left = x - w - 14;
+    if (top + h > innerHeight - 8) top = y - h - 14;
+    tip.style.left = Math.max(8, left) + "px"; tip.style.top = Math.max(8, top) + "px";
+  }
+  const hideTip = () => { tip.style.opacity = 0; };
+
+  // ---------- tiles ----------
+  function tiles() {
+    const v = D.validation.detections, r = v.results;
+    const cell = r["cell factor + shrinkage (Fire Pulse)"], raw = r["identity (no harmonisation)"];
+    document.getElementById("t-k").textContent = fmt1(v.national_factor, 3);
+    document.getElementById("t-k-n").textContent = "MODIS ÷ VIIRS, learned before " + v.train_until;
+    document.getElementById("t-x").textContent = fmt1(1 / v.national_factor, 1) + "×";
+    document.getElementById("t-err").textContent = fmt1(cell.weekly_national_error_pct, 1) + "%";
+    document.getElementById("t-err-n").textContent = "vs " + fmt(raw.weekly_national_error_pct) + "% with no harmonisation";
+    const T = META.totals;
+    document.getElementById("t-rows").textContent = fmt1((T.modis_n + T.viirs_n) / 1e6, 2) + "M";
+    document.getElementById("t-rows-n").textContent = fmt(T.modis_n) + " MODIS + " + fmt(T.viirs_n) + " VIIRS, after cleaning";
+    document.getElementById("sourceline").textContent = META.source + " · " + META.start + " to " + META.end + " · " + cells.length.toLocaleString("en-AU") + " grid squares";
+  }
+
+  // ---------- presets ----------
+  const presetBox = document.getElementById("presets");
+  PRESETS.forEach((p) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "chip"; b.textContent = p.name; b.dataset.id = p.id;
+    b.setAttribute("aria-pressed", p.id === region.preset ? "true" : "false");
+    b.addEventListener("click", () => { region = { name: p.name, box: p.box, preset: p.id }; update(); });
+    presetBox.appendChild(b);
+  });
+
+  // ---------- map ----------
+  const map = document.getElementById("map");
+  const LON0 = 112, LON1 = 155, LAT0 = -44.5, LAT1 = -9;
+  const KX = Math.cos(27 * Math.PI / 180);
+  let mapGeom = null, drag = null;
+  function mapSetup() {
+    const r = map.getBoundingClientRect(), dpr = devicePixelRatio || 1;
+    map.width = Math.round(r.width * dpr); map.height = Math.round(r.height * dpr);
+    const pad = 10 * dpr;
+    const sx = (map.width - 2 * pad) / ((LON1 - LON0) * KX), sy = (map.height - 2 * pad) / (LAT1 - LAT0);
+    const s = Math.min(sx, sy);
+    const ox = (map.width - s * (LON1 - LON0) * KX) / 2, oy = (map.height - s * (LAT1 - LAT0)) / 2;
+    mapGeom = { s, ox, oy, dpr,
+      x: (lon) => ox + (lon - LON0) * KX * s, y: (lat) => oy + (LAT1 - lat) * s,
+      lon: (px) => LON0 + (px - ox) / (KX * s), lat: (py) => LAT1 - (py - oy) / s };
+  }
+  const hmax = () => { let m = 0; for (const c of cells) if (c.h > m) m = c.h; return m; };
+  let HMAX = 1;
+  function heatColor(t) { // t in 0..1
+    const i = Math.min(7, Math.max(1, Math.ceil(t * 7)));
+    return css("--heat-" + i);
+  }
+  function drawMap() {
+    if (!mapGeom) mapSetup();
+    const g = map.getContext("2d"), M = mapGeom;
+    g.clearRect(0, 0, map.width, map.height);
+    g.fillStyle = css("--land"); g.strokeStyle = css("--coast"); g.lineWidth = 1 * M.dpr;
+    for (const ring of D.outline) {
+      g.beginPath();
+      ring.forEach((p, i) => { const X = M.x(p[0]), Y = M.y(p[1]); i ? g.lineTo(X, Y) : g.moveTo(X, Y); });
+      g.closePath(); g.fill(); g.stroke();
+    }
+    const lmax = Math.log1p(HMAX);
+    for (const c of cells) {
+      if (c.h < 1) continue;
+      const t = Math.log1p(c.h) / lmax;
+      g.globalAlpha = inBox(c, region.box) ? 1 : 0.35;
+      g.fillStyle = heatColor(t);
+      const x0 = M.x(c.lon0), x1 = M.x(c.lon0 + G), y0 = M.y(c.lat0 + G), y1 = M.y(c.lat0);
+      g.fillRect(x0, y0, Math.max(1, x1 - x0 - 0.5 * M.dpr), Math.max(1, y1 - y0 - 0.5 * M.dpr));
+    }
+    g.globalAlpha = 1;
+    const b = drag ? drag.box : region.box;
+    if (b) {
+      g.strokeStyle = css("--sel"); g.lineWidth = 2 * M.dpr; g.setLineDash([5 * M.dpr, 4 * M.dpr]);
+      g.strokeRect(M.x(b[1]), M.y(b[2]), M.x(b[3]) - M.x(b[1]), M.y(b[0]) - M.y(b[2]));
+      g.setLineDash([]);
+    }
+  }
+  function mapPoint(e) {
+    const r = map.getBoundingClientRect(), d = mapGeom.dpr;
+    return { lon: mapGeom.lon((e.clientX - r.left) * d), lat: mapGeom.lat((e.clientY - r.top) * d) };
+  }
+  map.addEventListener("pointerdown", (e) => { map.setPointerCapture(e.pointerId); const p = mapPoint(e); drag = { a: p, box: null }; });
+  map.addEventListener("pointermove", (e) => {
+    const p = mapPoint(e);
+    if (drag) {
+      const a = drag.a;
+      drag.box = [Math.min(a.lat, p.lat), Math.min(a.lon, p.lon), Math.max(a.lat, p.lat), Math.max(a.lon, p.lon)];
+      drawMap(); return;
+    }
+    const c = cells.find((c) => p.lat >= c.lat0 && p.lat < c.lat0 + G && p.lon >= c.lon0 && p.lon < c.lon0 + G);
+    if (c) showTip("<b>" + fmt1(-c.lat0 - G / 2, 2) + "°S " + fmt1(c.lon0 + G / 2, 2) + "°E</b><br>Harmonised: " + fmt(c.h) + "<br>k for this square: " + fmt1(c.k, 3), e.clientX, e.clientY);
+    else hideTip();
+  });
+  map.addEventListener("pointerleave", hideTip);
+  map.addEventListener("pointerup", (e) => {
+    if (!drag) return;
+    const b = drag.box; drag = null;
+    if (b && (b[2] - b[0]) > 0.4 && (b[3] - b[1]) > 0.4) {
+      const sn = (x) => Math.round(x / G) * G;
+      region = { name: "Custom box " + fmt1(-b[2], 1) + "–" + fmt1(-b[0], 1) + "°S, " + fmt1(b[1], 1) + "–" + fmt1(b[3], 1) + "°E", box: [sn(b[0]), sn(b[1]), sn(b[2]), sn(b[3])], preset: null };
+      update();
+    } else drawMap();
+  });
+
+  // ---------- calendar ----------
+  const cal = document.getElementById("cal");
+  let calGeom = null, thresholds = [];
+  function computeThresholds() {
+    const vals = [];
+    for (let i = 0; i < N; i++) if (A.H[i] > 0) vals.push(A.H[i]);
+    vals.sort((a, b) => a - b);
+    const q = (p) => vals.length ? vals[Math.min(vals.length - 1, Math.floor(p * vals.length))] : 1;
+    thresholds = [0.15, 0.35, 0.55, 0.72, 0.85, 0.94].map(q);
+    for (let i = 1; i < thresholds.length; i++) if (thresholds[i] <= thresholds[i - 1]) thresholds[i] = thresholds[i - 1] + 1e-6;
+  }
+  function bucket(v) { if (v <= 0) return 0; let i = 0; while (i < thresholds.length && v > thresholds[i]) i++; return i + 1; }
+  function drawCal() {
+    const wrap = cal.parentElement, dpr = devicePixelRatio || 1;
+    const W = Math.max(520, wrap.clientWidth);
+    const labelW = 40, cs = Math.max(7, Math.min(16, Math.floor((W - labelW - 4) / 54)));
+    const gap = Math.max(1, Math.round(cs / 7));
+    const rowH = 7 * cs + 22;
+    const H = years.length * rowH;
+    cal.style.width = W + "px"; cal.style.height = H + "px";
+    cal.width = W * dpr; cal.height = H * dpr;
+    const g = cal.getContext("2d"); g.scale(dpr, dpr); g.clearRect(0, 0, W, H);
+    const data = A[calMode];
+    const colors = [css("--heat-0")]; for (let i = 1; i <= 7; i++) colors.push(css("--heat-" + i));
+    g.font = "11px " + css("--font"); g.textBaseline = "middle";
+    const rects = [];
+    years.forEach((y, yi) => {
+      const top = yi * rowH + 18;
+      g.fillStyle = css("--ink-2"); g.font = "600 12px " + css("--font"); g.fillText(String(y), 0, top + 3.5 * cs);
+      g.font = "11px " + css("--font");
+      const jan1 = Date.UTC(y, 0, 1), off = (new Date(jan1).getUTCDay() + 6) % 7; // Monday = 0
+      for (let i = 0; i < N; i++) {
+        if (dayY[i] !== y) continue;
+        const doy = Math.round((START + i * DAY - jan1) / DAY);
+        const col = Math.floor((doy + off) / 7), row = (doy + off) % 7;
+        const x = labelW + col * cs, yy = top + row * cs;
+        g.fillStyle = colors[bucket(data[i])];
+        g.beginPath(); g.roundRect ? g.roundRect(x, yy, cs - gap, cs - gap, Math.min(3, cs / 4)) : g.rect(x, yy, cs - gap, cs - gap); g.fill();
+        rects.push({ i, x, y: yy, s: cs - gap });
+        const d = dateOf(i);
+        if (d.getUTCDate() === 1) { g.fillStyle = css("--muted"); g.fillText(MONTHS[d.getUTCMonth()], x, top - 9); }
+      }
+    });
+    calGeom = { rects, cs };
+  }
+  cal.addEventListener("mousemove", (e) => {
+    if (!calGeom) return;
+    const r = cal.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    const hit = calGeom.rects.find((q) => x >= q.x && x < q.x + calGeom.cs && y >= q.y && y < q.y + calGeom.cs);
+    if (!hit) return hideTip();
+    const i = hit.i;
+    showTip("<b>" + dstr(i) + "</b><br>Harmonised: " + fmt(A.H[i]) + "<br>MODIS raw: " + fmt(A.M[i]) + "<br>VIIRS raw: " + fmt(A.V[i]), e.clientX, e.clientY);
+  });
+  cal.addEventListener("mouseleave", hideTip);
+  function calLegend() {
+    const L = document.getElementById("callegend");
+    let h = "<span>None</span><span class='sw' style='background:var(--heat-0)'></span><span style='margin-left:8px'>Less</span>";
+    for (let i = 1; i <= 7; i++) h += "<span class='sw' style='background:var(--heat-" + i + ")' title='" + (i === 1 ? "1–" + fmt(thresholds[0]) : i === 7 ? "over " + fmt(thresholds[5]) : fmt(thresholds[i - 2]) + "–" + fmt(thresholds[i - 1])) + " detections'></span>";
+    h += "<span>More</span><span style='margin-left:8px'>(top shade: over " + fmt(thresholds[5]) + " MODIS-equivalent detections a day)</span>";
+    L.innerHTML = h;
+  }
+  document.querySelectorAll("#calmode button").forEach((b) => b.addEventListener("click", () => {
+    calMode = b.dataset.m;
+    document.querySelectorAll("#calmode button").forEach((x) => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+    drawCal();
+  }));
+
+  // ---------- svg line chart ----------
+  const NS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, parent) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+  function niceMax(v) { if (v <= 0) return 1; const p = Math.pow(10, Math.floor(Math.log10(v))); for (const m of [1, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10]) if (m * p >= v) return m * p; return 10 * p; }
+  function lineChart(host, opts) {
+    // opts: labels[], series:[{id,name,color,values,dash,hidden}], xTicks: [[i,label]], height, tipTitle(i)
+    host.innerHTML = "";
+    const W = Math.max(320, host.clientWidth), H = opts.height || 260;
+    const m = { l: 52, r: 16, t: 10, b: 26 };
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": opts.aria }, host);
+    const n = opts.labels.length;
+    const vis = opts.series.filter((s) => !s.hidden);
+    let mx = 0; vis.forEach((s) => s.values.forEach((v) => { if (v > mx) mx = v; })); if (opts.band) opts.band.hi.forEach((v) => { if (v > mx) mx = v; });
+    const ymax = niceMax(mx * 1.05);
+    const X = (i) => m.l + (n <= 1 ? 0 : i * (W - m.l - m.r) / (n - 1));
+    const Y = (v) => H - m.b - (v / ymax) * (H - m.t - m.b);
+    for (let k = 0; k <= 4; k++) {
+      const v = ymax * k / 4, y = Y(v);
+      el("line", { x1: m.l, x2: W - m.r, y1: y, y2: y, stroke: k === 0 ? "var(--axis)" : "var(--grid)", "stroke-width": 1 }, svg);
+      const t = el("text", { x: m.l - 8, y: y + 4, "text-anchor": "end" }, svg); t.textContent = v >= 1000 ? fmt1(v / 1000, v % 1000 ? 1 : 0) + "k" : fmt(v);
+    }
+    (opts.xTicks || []).forEach(([i, lab]) => { const t = el("text", { x: X(i), y: H - 8, "text-anchor": "middle" }, svg); t.textContent = lab; });
+    if (opts.marker != null) {
+      el("line", { x1: X(opts.marker), x2: X(opts.marker), y1: m.t, y2: H - m.b, stroke: "var(--muted)", "stroke-dasharray": "3 3" }, svg);
+      const t = el("text", { x: X(opts.marker) + 4, y: m.t + 10 }, svg); t.textContent = opts.markerLabel || "";
+    }
+    if (opts.band) {
+      const b = opts.band;
+      const up = b.hi.map((v, i) => (i ? "L" : "M") + X(i).toFixed(1) + " " + Y(v).toFixed(1)).join("");
+      const dn = b.lo.map((v, i) => "L" + X(i).toFixed(1) + " " + Y(v).toFixed(1)).reverse().join("");
+      el("path", { d: up + dn + "Z", fill: b.color, opacity: 0.18, stroke: "none" }, svg);
+    }
+    vis.forEach((s) => {
+      const d = s.values.map((v, i) => (i ? "L" : "M") + X(i).toFixed(1) + " " + Y(v).toFixed(1)).join("");
+      el("path", { d, fill: "none", stroke: s.color, "stroke-width": 2, "stroke-linejoin": "round", "stroke-linecap": "round", "stroke-dasharray": s.dash || "none" }, svg);
+    });
+    const cross = el("line", { y1: m.t, y2: H - m.b, stroke: "var(--muted)", "stroke-width": 1, opacity: 0 }, svg);
+    const dots = vis.map((s) => el("circle", { r: 4, fill: s.color, stroke: "var(--surface)", "stroke-width": 2, opacity: 0 }, svg));
+    const hit = el("rect", { x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b, fill: "transparent" }, svg);
+    hit.addEventListener("mousemove", (e) => {
+      const r = svg.getBoundingClientRect(), px = (e.clientX - r.left) * W / r.width;
+      const i = Math.max(0, Math.min(n - 1, Math.round((px - m.l) / ((W - m.l - m.r) / (n - 1)))));
+      cross.setAttribute("x1", X(i)); cross.setAttribute("x2", X(i)); cross.setAttribute("opacity", 1);
+      let h = "<b>" + opts.tipTitle(i) + "</b>";
+      if (opts.band) h += "<br>Range of all years: " + fmt(opts.band.lo[i]) + "–" + fmt(opts.band.hi[i]);
+      vis.forEach((s, k) => { dots[k].setAttribute("cx", X(i)); dots[k].setAttribute("cy", Y(s.values[i])); dots[k].setAttribute("opacity", 1); h += "<br>" + s.name + ": " + fmt(s.values[i]); });
+      showTip(h, e.clientX, e.clientY);
+    });
+    hit.addEventListener("mouseleave", () => { cross.setAttribute("opacity", 0); dots.forEach((d) => d.setAttribute("opacity", 0)); hideTip(); });
+  }
+  function legend(host, series, onToggle) {
+    host.innerHTML = "";
+    series.forEach((s) => {
+      const b = document.createElement(onToggle ? "button" : "span");
+      b.className = "key";
+      if (onToggle) { b.type = "button"; b.setAttribute("aria-pressed", s.hidden ? "false" : "true"); b.addEventListener("click", () => { s.hidden = !s.hidden; onToggle(); }); }
+      b.innerHTML = "<span class='line' style='background:" + s.color + (s.dash ? ";background:repeating-linear-gradient(90deg," + s.color + " 0 4px,transparent 4px 7px)" : "") + "'></span>" + s.name;
+      host.appendChild(b);
+    });
+  }
+
+  // ---------- weekly ----------
+  const weekVis = { M: true, V: true, H: true };
+  function weekly() {
+    const nw = Math.ceil(N / 7), M = new Array(nw).fill(0), V = new Array(nw).fill(0), H = new Array(nw).fill(0);
+    for (let i = 0; i < N; i++) { const w = Math.floor(i / 7); M[w] += A.M[i]; V[w] += A.V[i]; H[w] += A.H[i]; }
+    const series = [
+      { id: "M", name: "MODIS raw", color: "var(--s-modis)", values: M, hidden: !weekVis.M },
+      { id: "V", name: "VIIRS raw", color: "var(--s-viirs)", values: V, hidden: !weekVis.V },
+      { id: "H", name: "VIIRS harmonised", color: "var(--s-harm)", values: H, hidden: !weekVis.H, dash: "6 4" },
+    ];
+    const ticks = [];
+    for (let w = 0; w < nw; w++) { const d = dateOf(w * 7); if (d.getUTCDate() <= 7 && [0, 6].includes(d.getUTCMonth())) ticks.push([w, MONTHS[d.getUTCMonth()] + " " + d.getUTCFullYear()]); }
+    const draw = () => {
+      series.forEach((s) => { weekVis[s.id] = !s.hidden; });
+      legend(document.getElementById("weeklegend"), series, draw);
+      lineChart(document.getElementById("weekly"), { labels: M, series, xTicks: ticks, height: 260, aria: "Weekly detections: MODIS raw, VIIRS raw and VIIRS harmonised",
+        tipTitle: (w) => "Week of " + dstr(w * 7) });
+    };
+    draw();
+  }
+
+  // ---------- false trend ----------
+  const sw = document.getElementById("switch");
+  sw.max = NMON - 3;
+  function monthly() {
+    const M = new Array(NMON).fill(0), V = new Array(NMON).fill(0), H = new Array(NMON).fill(0);
+    for (let i = 0; i < N; i++) { const k = monthIdx(i); M[k] += A.M[i]; V[k] += A.V[i]; H[k] += A.H[i]; }
+    return { M, V, H };
+  }
+  const monLabel = (k) => MONTHS[k % 12] + " " + (years[0] + Math.floor(k / 12));
+  function falseTrend() {
+    const mo = monthly(), s = +sw.value;
+    document.getElementById("switchlbl").textContent = monLabel(s);
+    const raw = mo.M.map((v, k) => (k < s ? v : mo.V[k]));
+    const harm = mo.M.map((v, k) => (k < s ? v : mo.H[k]));
+    let sm = 0, sv = 0, sh = 0;
+    for (let k = s; k < NMON; k++) { sm += mo.M[k]; sv += mo.V[k]; sh += mo.H[k]; }
+    document.getElementById("fx-raw").textContent = sm > 0 ? fmt1(sv / sm, 1) + "× higher" : "–";
+    const diff = sm > 0 ? (sh / sm - 1) * 100 : 0;
+    document.getElementById("fx-harm").textContent = sm > 0 ? (diff >= 0 ? "+" : "−") + fmt1(Math.abs(diff), 1) + "%" : "–";
+    const series = [
+      { name: "Raw switch (MODIS, then VIIRS)", color: "var(--s-viirs)", values: raw },
+      { name: "Harmonised switch", color: "var(--s-harm)", values: harm },
+      { name: "MODIS throughout (reference)", color: "var(--s-modis)", values: mo.M, dash: "2 4" },
+    ];
+    legend(document.getElementById("falselegend"), series, null);
+    const ticks = []; for (let k = 0; k < NMON; k += 6) ticks.push([k, monLabel(k)]);
+    lineChart(document.getElementById("falsechart"), { labels: raw, series, xTicks: ticks, height: 240, marker: s, markerLabel: "switch",
+      aria: "Monthly detections when the record switches from MODIS to VIIRS", tipTitle: (k) => monLabel(k) });
+  }
+  sw.addEventListener("input", falseTrend);
+
+  // ---------- peaks & month table ----------
+  function peaks() {
+    const nw = Math.floor(N / 7), W = [];
+    for (let w = 0; w < nw; w++) { let s = 0; for (let i = w * 7; i < w * 7 + 7; i++) s += A.H[i]; W.push([w, s]); }
+    W.sort((a, b) => b[1] - a[1]);
+    const top = W.slice(0, 5), mx = top.length ? top[0][1] : 1;
+    document.getElementById("peaks").innerHTML = top.filter((t) => t[1] > 0).map((t, k) =>
+      `<li><span class="rank">${k + 1}</span><span><span style="display:block">Week of ${dstr(t[0] * 7)}</span><span class="bar" style="display:block;width:${Math.max(4, 100 * t[1] / mx)}%"></span></span><span class="val">${fmt(t[1])}</span></li>`).join("") || "<li>No detections in this region.</li>";
+    const mo = monthly().H;
+    let h = "<thead><tr><th>Month</th>" + years.map((y) => `<th>${y}</th>`).join("") + "</tr></thead><tbody>";
+    for (let m = 0; m < 12; m++) {
+      const vals = years.map((_, yi) => mo[yi * 12 + m]);
+      const mean = vals.reduce((a, b) => a + b, 0) / vals.length;
+      h += `<tr><td>${MONTHS[m]}</td>` + vals.map((v) => {
+        let p = "";
+        if (mean >= 20 && v >= 1.5 * mean) p = '<span class="pill high">High</span>';
+        else if (mean >= 20 && v <= 0.5 * mean) p = '<span class="pill low">Low</span>';
+        return `<td>${fmt(v)}${p}</td>`;
+      }).join("") + "</tr>";
+    }
+    document.getElementById("monthtable").innerHTML = h + "</tbody>";
+  }
+
+  // ---------- method tables ----------
+  function methodTables() {
+    const v = D.validation.detections.results;
+    const names = { "identity (no harmonisation)": "No harmonisation", "national factor": "One national K", "cell factor + shrinkage (Fire Pulse)": "Per-square k (Fire Pulse)" };
+    let h = "<thead><tr><th>Method</th><th>Weekly error</th><th>Per-square error</th></tr></thead><tbody>";
+    for (const k in v) h += `<tr><td>${names[k] || k}</td><td>${fmt1(v[k].weekly_national_error_pct)}%</td><td>${fmt1(v[k].median_cell_error_pct)}%</td></tr>`;
+    document.getElementById("valtable").innerHTML = h + "</tbody>";
+    const Y = D.yearly || [];
+    h = "<thead><tr><th>Year</th><th>MODIS</th><th>VIIRS</th><th>K</th><th>K day</th><th>K night</th></tr></thead><tbody>";
+    Y.forEach((r) => { h += `<tr><td>${r.year}</td><td>${fmt(r.modis)}</td><td>${fmt(r.viirs)}</td><td>${fmt1(r.k, 3)}</td><td>${r.k_day == null ? "–" : fmt1(r.k_day, 3)}</td><td>${r.k_night == null ? "–" : fmt1(r.k_night, 3)}</td></tr>`; });
+    document.getElementById("yeartable").innerHTML = h + "</tbody>";
+    if (Y.length >= 2) {
+      const a = Y[0], b = Y[Y.length - 1];
+      document.getElementById("finding").innerHTML = `<b>Finding:</b> the night-time K stays near ${fmt1(b.k_night, 2)} every year, while the daytime K moves from ${fmt1(a.k_day, 3)} to ${fmt1(b.k_day, 3)}. VIIRS is far more sensitive at night, and the daytime shift is consistent with the ageing MODIS satellites' changing overpass times. Harmonisation should be recalibrated each year, not fixed once.`;
+    }
+  }
+
+
+  // ---------- season timing ----------
+  function yearSeries(y) { const out = []; for (let i = 0; i < N; i++) if (dayY[i] === y) out.push(i); return out; }
+  function seasonStats(y) {
+    const idx = yearSeries(y); let tot = 0; idx.forEach((i) => (tot += A.H[i]));
+    if (tot <= 0) return null;
+    const at = (p) => { let c = 0; for (const i of idx) { c += A.H[i]; if (c >= p * tot) return i; } return idx[idx.length - 1]; };
+    let best = -1, bw = idx[0];
+    for (let k = 0; k + 6 < idx.length; k++) { let s = 0; for (let j = k; j < k + 7; j++) s += A.H[idx[j]]; if (s > best) { best = s; bw = idx[k]; } }
+    return { y, tot, start: at(0.1), mid: at(0.5), end: at(0.9), peak: bw, peakVal: best };
+  }
+  const doy = (i) => Math.round((START + i * DAY - Date.UTC(dayY[i], 0, 1)) / DAY);
+  const shortDate = (i) => { const d = dateOf(i); return d.getUTCDate() + " " + MONTHS[d.getUTCMonth()]; };
+  function season() {
+    const S = years.map(seasonStats);
+    let h = "<thead><tr><th>Year</th><th>Start</th><th>Midpoint</th><th>Peak week</th><th>End</th><th>Total</th></tr></thead><tbody>";
+    S.forEach((r, k) => {
+      if (!r) { h += `<tr><td>${years[k]}</td><td colspan="5">No activity</td></tr>`; return; }
+      h += `<tr><td>${r.y}</td><td>${shortDate(r.start)}</td><td>${shortDate(r.mid)}</td><td>${shortDate(r.peak)}</td><td>${shortDate(r.end)}</td><td>${fmt(r.tot)}</td></tr>`;
+    });
+    document.getElementById("seasontable").innerHTML = h + "</tbody>";
+    return S;
+  }
+
+  // ---------- typical year ----------
+  let pickYear = null;
+  const yp = document.getElementById("yearpick");
+  function weekOfYear() { // 52 weeks per year, day-of-year based
+    const W = {}; years.forEach((y) => (W[y] = new Array(52).fill(0)));
+    for (let i = 0; i < N; i++) { const w = Math.min(51, Math.floor(doy(i) / 7)); W[dayY[i]][w] += A.H[i]; }
+    return W;
+  }
+  function typical() {
+    if (pickYear == null) pickYear = years[years.length - 1];
+    yp.innerHTML = years.map((y) => `<button type="button" data-y="${y}" aria-pressed="${y === pickYear}">${y}</button>`).join("");
+    yp.querySelectorAll("button").forEach((b) => b.addEventListener("click", () => { pickYear = +b.dataset.y; typical(); }));
+    const W = weekOfYear();
+    const lo = [], hi = [], avg = [];
+    for (let w = 0; w < 52; w++) { const v = years.map((y) => W[y][w]); lo.push(Math.min(...v)); hi.push(Math.max(...v)); avg.push(v.reduce((a, b) => a + b, 0) / v.length); }
+    const series = [
+      { name: pickYear + " (harmonised)", color: "var(--accent)", values: W[pickYear] },
+      { name: "Average of all years", color: "var(--muted)", values: avg, dash: "5 4" },
+    ];
+    const host = document.getElementById("typlegend");
+    legend(host, series, null);
+    const band = document.createElement("span"); band.className = "key";
+    band.innerHTML = "<span class='sw' style='background:var(--s-modis);opacity:.3'></span>Range across " + years[0] + "–" + years[years.length - 1];
+    host.appendChild(band);
+    const ticks = [0, 9, 17, 26, 35, 43].map((w) => [w, MONTHS[Math.min(11, Math.floor(w * 7 / 30.5))]]);
+    lineChart(document.getElementById("typical"), { labels: avg, series, xTicks: ticks, height: 230, band: { lo, hi, color: "var(--s-modis)" },
+      aria: "Weekly harmonised detections for one year against the range of all years", tipTitle: (w) => "Week " + (w + 1) + " (from " + shortDate(w * 7) + ")" });
+  }
+
+  // ---------- plain-English summary ----------
+  function glance(S) {
+    const mo = monthly().H; const mt = new Array(12).fill(0); let tot = 0;
+    for (let k = 0; k < NMON; k++) { mt[k % 12] += mo[k]; tot += mo[k]; }
+    const el = document.getElementById("glance");
+    if (tot < 1) { el.textContent = "No fire detections in this region between " + META.start + " and " + META.end + "."; return; }
+    let best = 0, bi = 0; for (let m = 0; m < 12; m++) { const s = mt[m] + mt[(m + 1) % 12] + mt[(m + 2) % 12]; if (s > best) { best = s; bi = m; } }
+    const share = Math.round(100 * best / tot);
+    const last = S[S.length - 1], others = S.slice(0, -1).filter(Boolean);
+    let txt = `Burning here peaks in ${MONTHS[bi]}–${MONTHS[(bi + 2) % 12]}, which holds ${share}% of all activity. `;
+    if (last && others.length) {
+      const avg = others.reduce((a, r) => a + r.tot, 0) / others.length;
+      const pct = Math.round((last.tot / avg - 1) * 100);
+      txt += `${last.y} had ${fmt(last.tot)} MODIS-equivalent detections, ${Math.abs(pct)}% ${pct >= 0 ? "above" : "below"} the ${others[0].y}–${others[others.length - 1].y} average. `;
+      const avgStart = others.reduce((a, r) => a + doy(r.start), 0) / others.length;
+      const shift = Math.round(doy(last.start) - avgStart);
+      if (Math.abs(shift) >= 7) txt += `Its season started about ${Math.round(Math.abs(shift) / 7)} week${Math.abs(shift) >= 14 ? "s" : ""} ${shift < 0 ? "earlier" : "later"} than usual.`;
+      else txt += `Its season started close to the usual time (${shortDate(last.start)}).`;
+    }
+    el.textContent = txt;
+  }
+
+  // ---------- update ----------
+  function update() {
+    A = aggregate();
+    document.querySelectorAll("#presets .chip").forEach((b) => b.setAttribute("aria-pressed", b.dataset.id === region.preset ? "true" : "false"));
+    let tm = 0, th = 0; for (let i = 0; i < N; i++) { tm += A.M[i]; th += A.H[i]; }
+    document.getElementById("regionline").innerHTML = `<b>${region.name}</b> · ${A.n.toLocaleString("en-AU")} squares · ${fmt(th)} harmonised detections (MODIS saw ${fmt(tm)})`;
+    computeThresholds(); drawMap(); drawCal(); calLegend(); const S = season(); glance(S); typical(); weekly(); falseTrend(); peaks();
+  }
+
+  tiles(); methodTables(); HMAX = hmax();
+  update();
+  let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { mapGeom = null; update(); }, 150); });
+  new MutationObserver(() => update()).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", update);
+})();
+</script>
+</body>
+</html>
