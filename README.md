@@ -31,6 +31,7 @@ VIIRS has smaller pixels (375 m vs 1 km) and much better night-time sensitivity,
    - weekly raw vs harmonised comparison
    - "false trend" demo: what happens when a record switches sensors
    - busiest weeks and High/Low months
+   - 2026 forecasting contest (six algorithms scored against real 2026 data) and a 2027 forecast for any region
 
 ## Results (Australia, 2023–2025)
 
@@ -121,15 +122,31 @@ output/forecast_2026_results.json, forecast_2027_*  contest results and 2027 for
 
 ## Limitations
 
-- 3 years of data; the method is built to run on the full 2003–present archive for a 20-year baseline.
+- 3 years of harmonised data (2023–2025), plus 2026 for the forecast test; the method is built to run on the full 2003–present archive.
 - A detection is a fire pixel, not a fire: counts measure burning activity, not number of fires.
 - Fire Radiative Power (FRP) was tested but its MODIS/VIIRS ratio is unstable over time, so the calendar uses detection counts.
 - Prototype for exploring historical patterns, not an operational warning system.
 
+## Future enhancements
+
+| # | Enhancement | What it adds | Who benefits |
+|---|---|---|---|
+| 1 | **20-year baseline** | Add MODIS 2003–2022, processed year by year into Parquet (about 550 MB of raw CSV becomes about 15 MB), so "unusual" means compared with two decades instead of three years | Scientists, land managers |
+| 2 | **Every VIIRS satellite** | Calibrate S-NPP, NOAA-20 and NOAA-21 separately ("one satellite, one factor") and recalibrate every year, since the daytime factor drifts | Scientists, NASA |
+| 3 | **Daily automated pipeline** | Ingest FIRMS near-real-time data every day, so the calendar stays current and can flag unusual weeks as they happen | Fire and emergency crews |
+| 4 | **Fire risk outlook** | Add NASA soil moisture (SMAP), rainfall (GPM) and vegetation dryness (MODIS NDVI) plus ENSO state; any new model must beat the median method that won the 2026 test | Fire agencies, planners |
+| 5 | **Controlled-burn planner** | Suggest the safest burn windows for each region from its historical peak weeks | Land managers |
+| 6 | **Fire event tracking and context** | Group hotspots into individual fire events, track their growth day by day, and add map layers (parks, land cover, towns); extend from Australia to the whole world | Responders, land managers |
+
 ## Use of AI
 
-This project was built with help from Claude (Anthropic), an AI assistant, which was used to draft and debug the Python pipeline and the web app code, to suggest the validation approach, and to help write the documentation and presentation text. All data comes from NASA FIRMS; all results were computed by running the code on that data. The team chose the challenge, sourced the data, reviewed the method and results, and made the design decisions.
+This project was built with help from Claude (Anthropic), an AI assistant, which was used to draft and debug the Python pipeline, the forecasting contest and the web app code, to suggest the validation and forecasting approach, and to help write the documentation and presentation text. All data comes from NASA FIRMS; all results were computed by running the code on that data. The team chose the challenge, sourced the data, reviewed the method and results, and made the design decisions.
 
 ## Data
 
-NASA FIRMS (Fire Information for Resource Management System): MODIS Collection 6.1 and VIIRS 375 m active fire products.
+NASA FIRMS (Fire Information for Resource Management System):
+- MODIS Collection 6.1 (Terra + Aqua), Australia, 2023–2025 (country-year files) and January–November 2026 (archive + near-real-time files)
+- VIIRS 375 m from NOAA-20, Australia, 2023–2025 (harmonisation)
+- VIIRS 375 m from S-NPP, Australia, January–November 2026 (independent check of the 2026 result)
+
+Raw files are kept out of the repository (`data/raw/` is git-ignored); download them from https://firms.modaps.eosdis.nasa.gov/
