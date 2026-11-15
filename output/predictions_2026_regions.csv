@@ -1,0 +1,505 @@
+method,region,month,prediction
+climatology,All Australia,1,8812.3
+climatology,All Australia,2,4775.0
+climatology,All Australia,3,7809.3
+climatology,All Australia,4,15774.7
+climatology,All Australia,5,23901.7
+climatology,All Australia,6,14929.7
+climatology,All Australia,7,15216.0
+climatology,All Australia,8,18686.0
+climatology,All Australia,9,28489.0
+climatology,All Australia,10,75041.3
+climatology,All Australia,11,39883.3
+climatology,All Australia,12,21317.3
+climatology,Top End (NT),1,177.0
+climatology,Top End (NT),2,59.7
+climatology,Top End (NT),3,128.3
+climatology,Top End (NT),4,1173.3
+climatology,Top End (NT),5,7936.7
+climatology,Top End (NT),6,7332.0
+climatology,Top End (NT),7,6850.7
+climatology,Top End (NT),8,6137.7
+climatology,Top End (NT),9,4707.0
+climatology,Top End (NT),10,7131.3
+climatology,Top End (NT),11,2200.0
+climatology,Top End (NT),12,492.7
+climatology,Kimberley (WA),1,454.0
+climatology,Kimberley (WA),2,225.0
+climatology,Kimberley (WA),3,1273.0
+climatology,Kimberley (WA),4,4208.0
+climatology,Kimberley (WA),5,7398.7
+climatology,Kimberley (WA),6,1797.0
+climatology,Kimberley (WA),7,1626.0
+climatology,Kimberley (WA),8,2497.0
+climatology,Kimberley (WA),9,4401.3
+climatology,Kimberley (WA),10,9151.7
+climatology,Kimberley (WA),11,3483.0
+climatology,Kimberley (WA),12,1681.0
+climatology,Cape York (QLD),1,11.3
+climatology,Cape York (QLD),2,0.3
+climatology,Cape York (QLD),3,0.0
+climatology,Cape York (QLD),4,5.0
+climatology,Cape York (QLD),5,247.7
+climatology,Cape York (QLD),6,1421.0
+climatology,Cape York (QLD),7,3102.7
+climatology,Cape York (QLD),8,1598.3
+climatology,Cape York (QLD),9,1328.3
+climatology,Cape York (QLD),10,3637.0
+climatology,Cape York (QLD),11,2172.0
+climatology,Cape York (QLD),12,733.7
+climatology,Central Australia,1,1308.7
+climatology,Central Australia,2,848.3
+climatology,Central Australia,3,422.0
+climatology,Central Australia,4,260.0
+climatology,Central Australia,5,364.3
+climatology,Central Australia,6,278.3
+climatology,Central Australia,7,190.3
+climatology,Central Australia,8,538.0
+climatology,Central Australia,9,2226.0
+climatology,Central Australia,10,12808.0
+climatology,Central Australia,11,3862.7
+climatology,Central Australia,12,1456.3
+climatology,South East QLD,1,48.0
+climatology,South East QLD,2,39.3
+climatology,South East QLD,3,30.3
+climatology,South East QLD,4,48.7
+climatology,South East QLD,5,81.7
+climatology,South East QLD,6,86.0
+climatology,South East QLD,7,137.3
+climatology,South East QLD,8,524.3
+climatology,South East QLD,9,704.7
+climatology,South East QLD,10,537.3
+climatology,South East QLD,11,194.7
+climatology,South East QLD,12,175.7
+climatology,South West WA,1,209.7
+climatology,South West WA,2,233.7
+climatology,South West WA,3,494.7
+climatology,South West WA,4,1829.7
+climatology,South West WA,5,1372.3
+climatology,South West WA,6,115.0
+climatology,South West WA,7,36.0
+climatology,South West WA,8,56.3
+climatology,South West WA,9,231.7
+climatology,South West WA,10,290.0
+climatology,South West WA,11,436.3
+climatology,South West WA,12,210.3
+median,All Australia,1,3179.0
+median,All Australia,2,1258.0
+median,All Australia,3,3510.0
+median,All Australia,4,12964.0
+median,All Australia,5,19001.0
+median,All Australia,6,11448.0
+median,All Australia,7,12216.0
+median,All Australia,8,12251.0
+median,All Australia,9,13231.0
+median,All Australia,10,40901.0
+median,All Australia,11,20627.0
+median,All Australia,12,10014.0
+median,Top End (NT),1,94.0
+median,Top End (NT),2,21.0
+median,Top End (NT),3,31.0
+median,Top End (NT),4,962.0
+median,Top End (NT),5,7221.0
+median,Top End (NT),6,6737.0
+median,Top End (NT),7,6418.0
+median,Top End (NT),8,4806.0
+median,Top End (NT),9,3447.0
+median,Top End (NT),10,4805.0
+median,Top End (NT),11,1373.0
+median,Top End (NT),12,289.0
+median,Kimberley (WA),1,126.0
+median,Kimberley (WA),2,81.0
+median,Kimberley (WA),3,643.0
+median,Kimberley (WA),4,3745.0
+median,Kimberley (WA),5,6040.0
+median,Kimberley (WA),6,1158.0
+median,Kimberley (WA),7,1024.0
+median,Kimberley (WA),8,1243.0
+median,Kimberley (WA),9,1437.0
+median,Kimberley (WA),10,5921.0
+median,Kimberley (WA),11,2017.0
+median,Kimberley (WA),12,823.0
+median,Cape York (QLD),1,5.0
+median,Cape York (QLD),2,0.0
+median,Cape York (QLD),3,0.0
+median,Cape York (QLD),4,0.0
+median,Cape York (QLD),5,183.0
+median,Cape York (QLD),6,1216.0
+median,Cape York (QLD),7,2885.0
+median,Cape York (QLD),8,1232.0
+median,Cape York (QLD),9,927.0
+median,Cape York (QLD),10,1717.0
+median,Cape York (QLD),11,1096.0
+median,Cape York (QLD),12,397.0
+median,Central Australia,1,260.0
+median,Central Australia,2,10.0
+median,Central Australia,3,17.0
+median,Central Australia,4,58.0
+median,Central Australia,5,39.0
+median,Central Australia,6,84.0
+median,Central Australia,7,49.0
+median,Central Australia,8,232.0
+median,Central Australia,9,407.0
+median,Central Australia,10,4527.0
+median,Central Australia,11,830.0
+median,Central Australia,12,268.0
+median,South East QLD,1,28.0
+median,South East QLD,2,25.0
+median,South East QLD,3,18.0
+median,South East QLD,4,25.0
+median,South East QLD,5,53.0
+median,South East QLD,6,72.0
+median,South East QLD,7,116.0
+median,South East QLD,8,521.0
+median,South East QLD,9,644.0
+median,South East QLD,10,331.0
+median,South East QLD,11,144.0
+median,South East QLD,12,96.0
+median,South West WA,1,75.0
+median,South West WA,2,16.0
+median,South West WA,3,360.0
+median,South West WA,4,1632.0
+median,South West WA,5,1260.0
+median,South West WA,6,84.0
+median,South West WA,7,18.0
+median,South West WA,8,31.0
+median,South West WA,9,191.0
+median,South West WA,10,244.0
+median,South West WA,11,110.0
+median,South West WA,12,120.0
+persistence,All Australia,1,15046.0
+persistence,All Australia,2,7856.0
+persistence,All Australia,3,6588.0
+persistence,All Australia,4,10573.0
+persistence,All Australia,5,21588.0
+persistence,All Australia,6,16060.0
+persistence,All Australia,7,16628.0
+persistence,All Australia,8,22596.0
+persistence,All Australia,9,22250.0
+persistence,All Australia,10,62159.0
+persistence,All Australia,11,25596.0
+persistence,All Australia,12,13030.0
+persistence,Top End (NT),1,327.0
+persistence,Top End (NT),2,112.0
+persistence,Top End (NT),3,282.0
+persistence,Top End (NT),4,1202.0
+persistence,Top End (NT),5,5658.0
+persistence,Top End (NT),6,9350.0
+persistence,Top End (NT),7,6960.0
+persistence,Top End (NT),8,7879.0
+persistence,Top End (NT),9,3292.0
+persistence,Top End (NT),10,5383.0
+persistence,Top End (NT),11,1287.0
+persistence,Top End (NT),12,321.0
+persistence,Kimberley (WA),1,474.0
+persistence,Kimberley (WA),2,271.0
+persistence,Kimberley (WA),3,965.0
+persistence,Kimberley (WA),4,1812.0
+persistence,Kimberley (WA),5,7434.0
+persistence,Kimberley (WA),6,2365.0
+persistence,Kimberley (WA),7,1879.0
+persistence,Kimberley (WA),8,4049.0
+persistence,Kimberley (WA),9,8542.0
+persistence,Kimberley (WA),10,8012.0
+persistence,Kimberley (WA),11,2062.0
+persistence,Kimberley (WA),12,803.0
+persistence,Cape York (QLD),1,8.0
+persistence,Cape York (QLD),2,1.0
+persistence,Cape York (QLD),3,0.0
+persistence,Cape York (QLD),4,0.0
+persistence,Cape York (QLD),5,177.0
+persistence,Cape York (QLD),6,968.0
+persistence,Cape York (QLD),7,2663.0
+persistence,Cape York (QLD),8,2155.0
+persistence,Cape York (QLD),9,828.0
+persistence,Cape York (QLD),10,3964.0
+persistence,Cape York (QLD),11,1014.0
+persistence,Cape York (QLD),12,376.0
+persistence,Central Australia,1,2950.0
+persistence,Central Australia,2,2026.0
+persistence,Central Australia,3,256.0
+persistence,Central Australia,4,48.0
+persistence,Central Australia,5,126.0
+persistence,Central Australia,6,99.0
+persistence,Central Australia,7,353.0
+persistence,Central Australia,8,384.0
+persistence,Central Australia,9,644.0
+persistence,Central Australia,10,3011.0
+persistence,Central Australia,11,954.0
+persistence,Central Australia,12,514.0
+persistence,South East QLD,1,31.0
+persistence,South East QLD,2,45.0
+persistence,South East QLD,3,26.0
+persistence,South East QLD,4,56.0
+persistence,South East QLD,5,63.0
+persistence,South East QLD,6,64.0
+persistence,South East QLD,7,117.0
+persistence,South East QLD,8,534.0
+persistence,South East QLD,9,808.0
+persistence,South East QLD,10,557.0
+persistence,South East QLD,11,328.0
+persistence,South East QLD,12,109.0
+persistence,South West WA,1,190.0
+persistence,South West WA,2,459.0
+persistence,South West WA,3,577.0
+persistence,South West WA,4,1594.0
+persistence,South West WA,5,1244.0
+persistence,South West WA,6,102.0
+persistence,South West WA,7,17.0
+persistence,South West WA,8,43.0
+persistence,South West WA,9,147.0
+persistence,South West WA,10,200.0
+persistence,South West WA,11,180.0
+persistence,South West WA,12,346.0
+ensemble,All Australia,1,11929.2
+ensemble,All Australia,2,6315.5
+ensemble,All Australia,3,7198.7
+ensemble,All Australia,4,13173.8
+ensemble,All Australia,5,22744.8
+ensemble,All Australia,6,15494.8
+ensemble,All Australia,7,15922.0
+ensemble,All Australia,8,20641.0
+ensemble,All Australia,9,25369.5
+ensemble,All Australia,10,68600.2
+ensemble,All Australia,11,32739.7
+ensemble,All Australia,12,17173.7
+ensemble,Top End (NT),1,252.0
+ensemble,Top End (NT),2,85.8
+ensemble,Top End (NT),3,205.2
+ensemble,Top End (NT),4,1187.7
+ensemble,Top End (NT),5,6797.3
+ensemble,Top End (NT),6,8341.0
+ensemble,Top End (NT),7,6905.3
+ensemble,Top End (NT),8,7008.3
+ensemble,Top End (NT),9,3999.5
+ensemble,Top End (NT),10,6257.2
+ensemble,Top End (NT),11,1743.5
+ensemble,Top End (NT),12,406.8
+ensemble,Kimberley (WA),1,464.0
+ensemble,Kimberley (WA),2,248.0
+ensemble,Kimberley (WA),3,1119.0
+ensemble,Kimberley (WA),4,3010.0
+ensemble,Kimberley (WA),5,7416.3
+ensemble,Kimberley (WA),6,2081.0
+ensemble,Kimberley (WA),7,1752.5
+ensemble,Kimberley (WA),8,3273.0
+ensemble,Kimberley (WA),9,6471.7
+ensemble,Kimberley (WA),10,8581.8
+ensemble,Kimberley (WA),11,2772.5
+ensemble,Kimberley (WA),12,1242.0
+ensemble,Cape York (QLD),1,9.7
+ensemble,Cape York (QLD),2,0.7
+ensemble,Cape York (QLD),3,0.0
+ensemble,Cape York (QLD),4,2.5
+ensemble,Cape York (QLD),5,212.3
+ensemble,Cape York (QLD),6,1194.5
+ensemble,Cape York (QLD),7,2882.8
+ensemble,Cape York (QLD),8,1876.7
+ensemble,Cape York (QLD),9,1078.2
+ensemble,Cape York (QLD),10,3800.5
+ensemble,Cape York (QLD),11,1593.0
+ensemble,Cape York (QLD),12,554.8
+ensemble,Central Australia,1,2129.3
+ensemble,Central Australia,2,1437.2
+ensemble,Central Australia,3,339.0
+ensemble,Central Australia,4,154.0
+ensemble,Central Australia,5,245.2
+ensemble,Central Australia,6,188.7
+ensemble,Central Australia,7,271.7
+ensemble,Central Australia,8,461.0
+ensemble,Central Australia,9,1435.0
+ensemble,Central Australia,10,7909.5
+ensemble,Central Australia,11,2408.3
+ensemble,Central Australia,12,985.2
+ensemble,South East QLD,1,39.5
+ensemble,South East QLD,2,42.2
+ensemble,South East QLD,3,28.2
+ensemble,South East QLD,4,52.3
+ensemble,South East QLD,5,72.3
+ensemble,South East QLD,6,75.0
+ensemble,South East QLD,7,127.2
+ensemble,South East QLD,8,529.2
+ensemble,South East QLD,9,756.3
+ensemble,South East QLD,10,547.2
+ensemble,South East QLD,11,261.3
+ensemble,South East QLD,12,142.3
+ensemble,South West WA,1,199.8
+ensemble,South West WA,2,346.3
+ensemble,South West WA,3,535.8
+ensemble,South West WA,4,1711.8
+ensemble,South West WA,5,1308.2
+ensemble,South West WA,6,108.5
+ensemble,South West WA,7,26.5
+ensemble,South West WA,8,49.7
+ensemble,South West WA,9,189.3
+ensemble,South West WA,10,245.0
+ensemble,South West WA,11,308.2
+ensemble,South West WA,12,278.2
+ensemble_enso,All Australia,1,11929.2
+ensemble_enso,All Australia,2,6315.5
+ensemble_enso,All Australia,3,7198.7
+ensemble_enso,All Australia,4,13173.8
+ensemble_enso,All Australia,5,22744.8
+ensemble_enso,All Australia,6,15512.9
+ensemble_enso,All Australia,7,15228.7
+ensemble_enso,All Australia,8,19931.7
+ensemble_enso,All Australia,9,31864.7
+ensemble_enso,All Australia,10,85397.1
+ensemble_enso,All Australia,11,39413.1
+ensemble_enso,All Australia,12,24853.4
+ensemble_enso,Top End (NT),1,252.0
+ensemble_enso,Top End (NT),2,85.8
+ensemble_enso,Top End (NT),3,205.2
+ensemble_enso,Top End (NT),4,1187.7
+ensemble_enso,Top End (NT),5,6797.3
+ensemble_enso,Top End (NT),6,7259.7
+ensemble_enso,Top End (NT),7,6865.2
+ensemble_enso,Top End (NT),8,6547.9
+ensemble_enso,Top End (NT),9,4884.3
+ensemble_enso,Top End (NT),10,7610.4
+ensemble_enso,Top End (NT),11,1921.7
+ensemble_enso,Top End (NT),12,592.9
+ensemble_enso,Kimberley (WA),1,464.0
+ensemble_enso,Kimberley (WA),2,248.0
+ensemble_enso,Kimberley (WA),3,1119.0
+ensemble_enso,Kimberley (WA),4,3010.0
+ensemble_enso,Kimberley (WA),5,7416.3
+ensemble_enso,Kimberley (WA),6,2129.0
+ensemble_enso,Kimberley (WA),7,1456.0
+ensemble_enso,Kimberley (WA),8,2903.7
+ensemble_enso,Kimberley (WA),9,5552.1
+ensemble_enso,Kimberley (WA),10,11343.9
+ensemble_enso,Kimberley (WA),11,3888.3
+ensemble_enso,Kimberley (WA),12,2081.3
+ensemble_enso,Cape York (QLD),1,9.7
+ensemble_enso,Cape York (QLD),2,0.7
+ensemble_enso,Cape York (QLD),3,0.0
+ensemble_enso,Cape York (QLD),4,2.5
+ensemble_enso,Cape York (QLD),5,212.3
+ensemble_enso,Cape York (QLD),6,1527.0
+ensemble_enso,Cape York (QLD),7,2832.2
+ensemble_enso,Cape York (QLD),8,1749.1
+ensemble_enso,Cape York (QLD),9,1498.1
+ensemble_enso,Cape York (QLD),10,4107.0
+ensemble_enso,Cape York (QLD),11,2179.3
+ensemble_enso,Cape York (QLD),12,839.2
+ensemble_enso,Central Australia,1,2129.3
+ensemble_enso,Central Australia,2,1437.2
+ensemble_enso,Central Australia,3,339.0
+ensemble_enso,Central Australia,4,154.0
+ensemble_enso,Central Australia,5,245.2
+ensemble_enso,Central Australia,6,331.4
+ensemble_enso,Central Australia,7,203.8
+ensemble_enso,Central Australia,8,487.7
+ensemble_enso,Central Australia,9,2869.7
+ensemble_enso,Central Australia,10,15189.3
+ensemble_enso,Central Australia,11,4497.9
+ensemble_enso,Central Australia,12,1835.8
+ensemble_enso,South East QLD,1,39.5
+ensemble_enso,South East QLD,2,42.2
+ensemble_enso,South East QLD,3,28.2
+ensemble_enso,South East QLD,4,52.3
+ensemble_enso,South East QLD,5,72.3
+ensemble_enso,South East QLD,6,97.0
+ensemble_enso,South East QLD,7,154.8
+ensemble_enso,South East QLD,8,447.4
+ensemble_enso,South East QLD,9,670.6
+ensemble_enso,South East QLD,10,635.8
+ensemble_enso,South East QLD,11,223.2
+ensemble_enso,South East QLD,12,220.6
+ensemble_enso,South West WA,1,199.8
+ensemble_enso,South West WA,2,346.3
+ensemble_enso,South West WA,3,535.8
+ensemble_enso,South West WA,4,1711.8
+ensemble_enso,South West WA,5,1308.2
+ensemble_enso,South West WA,6,103.3
+ensemble_enso,South West WA,7,25.3
+ensemble_enso,South West WA,8,70.4
+ensemble_enso,South West WA,9,201.6
+ensemble_enso,South West WA,10,284.0
+ensemble_enso,South West WA,11,320.8
+ensemble_enso,South West WA,12,226.1
+ml_gbm,All Australia,1,16660.9
+ml_gbm,All Australia,2,5797.6
+ml_gbm,All Australia,3,6394.5
+ml_gbm,All Australia,4,11108.3
+ml_gbm,All Australia,5,18370.1
+ml_gbm,All Australia,6,15760.4
+ml_gbm,All Australia,7,18285.9
+ml_gbm,All Australia,8,20287.0
+ml_gbm,All Australia,9,19591.3
+ml_gbm,All Australia,10,46220.3
+ml_gbm,All Australia,11,29149.3
+ml_gbm,All Australia,12,11114.1
+ml_gbm,Top End (NT),1,347.0
+ml_gbm,Top End (NT),2,139.3
+ml_gbm,Top End (NT),3,238.2
+ml_gbm,Top End (NT),4,1210.5
+ml_gbm,Top End (NT),5,5279.4
+ml_gbm,Top End (NT),6,8923.4
+ml_gbm,Top End (NT),7,7855.2
+ml_gbm,Top End (NT),8,6863.2
+ml_gbm,Top End (NT),9,3479.0
+ml_gbm,Top End (NT),10,4394.1
+ml_gbm,Top End (NT),11,1688.9
+ml_gbm,Top End (NT),12,310.9
+ml_gbm,Kimberley (WA),1,853.4
+ml_gbm,Kimberley (WA),2,322.0
+ml_gbm,Kimberley (WA),3,593.2
+ml_gbm,Kimberley (WA),4,2314.4
+ml_gbm,Kimberley (WA),5,5667.2
+ml_gbm,Kimberley (WA),6,2170.0
+ml_gbm,Kimberley (WA),7,2905.6
+ml_gbm,Kimberley (WA),8,3697.2
+ml_gbm,Kimberley (WA),9,3984.0
+ml_gbm,Kimberley (WA),10,5540.3
+ml_gbm,Kimberley (WA),11,2445.3
+ml_gbm,Kimberley (WA),12,720.6
+ml_gbm,Cape York (QLD),1,56.6
+ml_gbm,Cape York (QLD),2,31.2
+ml_gbm,Cape York (QLD),3,37.6
+ml_gbm,Cape York (QLD),4,29.8
+ml_gbm,Cape York (QLD),5,203.7
+ml_gbm,Cape York (QLD),6,942.6
+ml_gbm,Cape York (QLD),7,2967.6
+ml_gbm,Cape York (QLD),8,1683.2
+ml_gbm,Cape York (QLD),9,782.0
+ml_gbm,Cape York (QLD),10,1951.6
+ml_gbm,Cape York (QLD),11,1401.4
+ml_gbm,Cape York (QLD),12,302.7
+ml_gbm,Central Australia,1,2210.9
+ml_gbm,Central Australia,2,544.1
+ml_gbm,Central Australia,3,271.0
+ml_gbm,Central Australia,4,187.7
+ml_gbm,Central Australia,5,234.2
+ml_gbm,Central Australia,6,188.4
+ml_gbm,Central Australia,7,302.7
+ml_gbm,Central Australia,8,395.4
+ml_gbm,Central Australia,9,565.5
+ml_gbm,Central Australia,10,2740.0
+ml_gbm,Central Australia,11,1226.5
+ml_gbm,Central Australia,12,555.1
+ml_gbm,South East QLD,1,83.0
+ml_gbm,South East QLD,2,66.9
+ml_gbm,South East QLD,3,48.9
+ml_gbm,South East QLD,4,58.2
+ml_gbm,South East QLD,5,62.6
+ml_gbm,South East QLD,6,59.8
+ml_gbm,South East QLD,7,89.6
+ml_gbm,South East QLD,8,479.9
+ml_gbm,South East QLD,9,633.4
+ml_gbm,South East QLD,10,517.1
+ml_gbm,South East QLD,11,371.2
+ml_gbm,South East QLD,12,164.9
+ml_gbm,South West WA,1,294.5
+ml_gbm,South West WA,2,288.5
+ml_gbm,South West WA,3,565.9
+ml_gbm,South West WA,4,1417.4
+ml_gbm,South West WA,5,1267.7
+ml_gbm,South West WA,6,144.6
+ml_gbm,South West WA,7,57.3
+ml_gbm,South West WA,8,50.9
+ml_gbm,South West WA,9,234.5
+ml_gbm,South West WA,10,256.2
+ml_gbm,South West WA,11,281.1
+ml_gbm,South West WA,12,308.9

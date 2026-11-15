@@ -1,0 +1,11 @@
+{
+  "winner": "median",
+  "rule": "median of the latest three years for each 0.5\u00b0 square and month",
+  "years_used": "2024, 2025, 2026 for Jan\u2013Oct; 2023\u20132025 for Nov\u2013Dec (2026 not complete)",
+  "interval": {
+    "level": 0.8,
+    "log_sd_from_2026_errors": 0.898,
+    "mean_log_bias_2026": 0.24
+  },
+  "made_at_utc": "2026-11-15T07:10:22+00:00"
+}

@@ -69,6 +69,8 @@ header { display: grid; gap: 6px; }
 h1 { font-size: 30px; line-height: 1.1; margin: 0; letter-spacing: -0.02em; text-wrap: balance; }
 h1 .dot { color: var(--accent); }
 .sub { color: var(--ink-2); margin: 0; max-width: 72ch; }
+.methodbar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 6px; font-size: 13px; color: var(--ink-2); }
+.methodbar .hint { margin: 0; }
 .tag { font-size: 12px; color: var(--muted); border: 1px solid var(--ring); border-radius: 999px; padding: 2px 10px; }
 h2 { font-size: 18px; margin: 0; text-wrap: balance; }
 h3 { font-size: 14px; margin: 0; color: var(--ink-2); font-weight: 600; }
@@ -125,6 +127,14 @@ th { color: var(--muted); font-weight: 600; font-size: 12px; }
 .peaks .rank { color: var(--muted); font-variant-numeric: tabular-nums; }
 .peaks .bar { height: 6px; border-radius: 3px; background: var(--heat-5); }
 .peaks .val { font-variant-numeric: tabular-nums; color: var(--ink-2); }
+.fcgrid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+.fctiles { display: grid; gap: 10px; }
+.fctiles > div { background: var(--surface-2); border-radius: 10px; padding: 10px 12px; }
+.fctiles .big { font-size: 22px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.fctiles .lbl { font-size: 12px; color: var(--ink-2); }
+tr.winrow td { font-weight: 650; }
+#leader th:nth-child(2), #leader td:nth-child(2) { text-align: left; white-space: normal; }
+.pill.win { background: var(--accent); color: var(--accent-ink); }
 .method { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; }
 .method p, .method li { color: var(--ink-2); font-size: 14px; margin: 0; }
 .method ol { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
@@ -134,7 +144,7 @@ th { color: var(--muted); font-weight: 600; font-size: 12px; }
 #tip b { font-weight: 650; }
 footer { color: var(--muted); font-size: 12px; }
 footer a { color: var(--ink-2); }
-@media (max-width: 960px) { .top, .two, .method { grid-template-columns: 1fr; } .tiles { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (max-width: 960px) { .fcgrid { grid-template-columns: 1fr; } .top, .two, .method { grid-template-columns: 1fr; } .tiles { grid-template-columns: repeat(2, minmax(0,1fr)); } }
 @media (max-width: 420px) { .wrap { padding: 16px 16px 48px; } .tile .v { font-size: 22px; } h1 { font-size: 26px; } }
 @media (prefers-reduced-motion: reduce) { #tip { transition: none; } }
 </style>
@@ -144,6 +154,13 @@ footer a { color: var(--ink-2); }
   <header>
     <div class="brand"><h1>Fire Pulse<span class="dot">.</span></h1><span class="tag">NASA Space Apps 2026 · Harmonization of MODIS and VIIRS Hot Spots</span></div>
     <p class="sub">A burning-activity calendar for Australia, 2023–2025. VIIRS detections are rescaled to the MODIS baseline so the satellite record can be read as one consistent series.</p>
+    <div class="methodbar"><span id="methodlbl">Harmonisation method</span>
+      <div class="seg" role="group" aria-labelledby="methodlbl" id="method">
+        <button type="button" data-m="ml" aria-pressed="true">Machine learning</button>
+        <button type="button" data-m="ratio" aria-pressed="false">Simple ratio</button>
+      </div>
+      <span class="hint" id="methodhint">–</span>
+    </div>
   </header>
 
   <section class="tiles" aria-label="Key results">
@@ -220,20 +237,44 @@ footer a { color: var(--ink-2); }
     </section>
   </div>
 
+  <section class="card" aria-labelledby="h-fc" id="forecast">
+    <div class="card-head"><div><h2 id="h-fc">8 · Which forecast was right? 2026 test and 2027 outlook</h2>
+      <p>Six algorithms predicted 2026 using only 2023–2025. Their predictions were locked before any 2026 data was seen, then scored against real NASA MODIS detections for January–October 2026. The winner forecasts 2027.</p></div></div>
+    <div class="fcgrid">
+      <div style="display:grid;gap:10px;min-width:0">
+        <h3>Leaderboard (all of Australia, January–October 2026)</h3>
+        <div class="tablewrap"><table id="leader"></table></div>
+        <p class="hint" id="lockline">–</p>
+      </div>
+      <div class="fctiles">
+        <div><div class="big" id="fc-actual">–</div><div class="lbl">Real MODIS detections, Jan–Oct 2026 (Australia)</div></div>
+        <div><div class="big" id="fc-win">–</div><div class="lbl" id="fc-win-l">–</div></div>
+        <div><div class="big" id="fc-27">–</div><div class="lbl" id="fc-27-l">–</div></div>
+      </div>
+    </div>
+    <div class="two" style="gap:24px">
+      <div style="display:grid;gap:8px;min-width:0"><h3 id="fcA-h">2026: forecasts against reality</h3><div class="legend" id="fcAlegend"></div><div id="fcA"></div></div>
+      <div style="display:grid;gap:8px;min-width:0"><h3 id="fcB-h">2027 forecast</h3><div class="legend" id="fcBlegend"></div><div id="fcB"></div></div>
+    </div>
+    <p class="glance" id="fcwhy">–</p>
+    <p class="hint" id="fccheck"></p>
+  </section>
+
   <section class="card" aria-labelledby="h-method">
-    <div class="card-head"><div><h2 id="h-method">8 · Method and validation</h2><p id="sourceline">–</p></div></div>
+    <div class="card-head"><div><h2 id="h-method">9 · Method and validation</h2><p id="sourceline">–</p></div></div>
     <div class="method">
       <div style="display:grid;gap:10px">
         <ol>
           <li><b>Clean.</b> Keep vegetation fires (type 0): MODIS confidence ≥ 30, VIIRS confidence nominal or high.</li>
           <li><b>Grid.</b> Count detections per 0.5° square per day, separately for each sensor. A detection is a fire pixel, not a whole fire.</li>
           <li><b>Calibrate.</b> Learn how many MODIS detections match one VIIRS detection, per square, pulled toward the national factor where a square has little data.</li>
-          <li><b>Validate.</b> Learn on 2023–2024, test on 2025, a year the model never saw.</li>
+          <li><b>Machine learning.</b> A gradient-boosting model (scikit-learn, Poisson loss) predicts each square-day's MODIS count from VIIRS detections, fire power, day/night split, confidence, season, location and the square's k.</li>
+          <li><b>Validate.</b> Learn on 2023–2024, test on 2025, a year the models never saw. Both methods are scored the same way.</li>
         </ol>
-        <div class="formula">K = ΣMODIS ÷ ΣVIIRS<br>k<sub>cell</sub> = (M<sub>cell</sub> + λ·K) ÷ (V<sub>cell</sub> + λ), λ = 200<br>Harmonised = VIIRS × k<sub>cell</sub></div>
+        <div class="formula">K = ΣMODIS ÷ ΣVIIRS<br>k<sub>cell</sub> = (M<sub>cell</sub> + λ·K) ÷ (V<sub>cell</sub> + λ), λ = 200<br>Ratio method: Harmonised = VIIRS × k<sub>cell</sub><br>ML method: Harmonised = f(VIIRS features), learned</div>
       </div>
       <div style="display:grid;gap:14px">
-        <div><h3>2025 test (never seen during calibration)</h3><div class="tablewrap"><table id="valtable"></table></div></div>
+        <div><h3>2025 test (never seen during calibration)</h3><div class="tablewrap"><table id="valtable"></table></div><p class="hint" id="mlnote" style="margin-top:8px"></p></div>
         <div><h3>Stability: K by year, day and night</h3><div class="tablewrap"><table id="yeartable"></table></div></div>
         <p id="finding">–</p>
       </div>
@@ -262,8 +303,8 @@ footer a { color: var(--ink-2); }
   // ---------- cells ----------
   const cells = Object.entries(D.cells).map(([key, c]) => {
     const [gy, gx] = key.split("_").map(Number);
-    let h = 0; for (const r of c.s) h += r[2] * c.kn;
-    return { gy, gx, k: c.kn, s: c.s, lat0: gy * G, lon0: gx * G, h };
+    let hr = 0, hm = 0; for (const r of c.s) { hr += r[2] * c.kn; hm += (r[3] || 0); }
+    return { key, gy, gx, k: c.kn, s: c.s, lat0: gy * G, lon0: gx * G, hr, hm, h: hm };
   });
   // day -> year/month index
   const dayY = new Int16Array(N), dayM = new Int16Array(N);
@@ -290,12 +331,15 @@ footer a { color: var(--ink-2); }
     let n = 0;
     for (const c of cells) {
       if (!inBox(c, region.box)) continue; n++;
-      for (const r of c.s) { M[r[0]] += r[1]; V[r[0]] += r[2]; H[r[0]] += r[2] * c.k; }
+      if (method === "ml") for (const r of c.s) { M[r[0]] += r[1]; V[r[0]] += r[2]; H[r[0]] += (r[3] || 0); }
+      else for (const r of c.s) { M[r[0]] += r[1]; V[r[0]] += r[2]; H[r[0]] += r[2] * c.k; }
     }
     return { M, V, H, n };
   }
   let A = null;
   let calMode = "H";
+  const HAS_ML = !!D.ml;
+  let method = HAS_ML ? "ml" : "ratio";
 
   // ---------- tooltip ----------
   const tip = document.getElementById("tip");
@@ -316,8 +360,13 @@ footer a { color: var(--ink-2); }
     document.getElementById("t-k").textContent = fmt1(v.national_factor, 3);
     document.getElementById("t-k-n").textContent = "MODIS ÷ VIIRS, learned before " + v.train_until;
     document.getElementById("t-x").textContent = fmt1(1 / v.national_factor, 1) + "×";
-    document.getElementById("t-err").textContent = fmt1(cell.weekly_national_error_pct, 1) + "%";
-    document.getElementById("t-err-n").textContent = "vs " + fmt(raw.weekly_national_error_pct) + "% with no harmonisation";
+    const ml = HAS_ML ? D.ml.results["gradient boosting (ML)"] : null;
+    const cur = method === "ml" && ml ? ml : cell;
+    document.getElementById("t-err").textContent = fmt1(cur.weekly_national_error_pct, 1) + "%";
+    document.getElementById("t-err-n").textContent = (method === "ml" && ml ? "ML model · simple ratio " + fmt1(cell.weekly_national_error_pct, 1) + "% · " : "") + "no harmonisation " + fmt(raw.weekly_national_error_pct) + "%";
+    document.getElementById("methodhint").textContent = method === "ml"
+      ? "A gradient-boosting model predicts MODIS-equivalent activity from VIIRS detections, fire power, day/night split, season and location."
+      : "VIIRS × k, one conversion factor per 0.5° square.";
     const T = META.totals;
     document.getElementById("t-rows").textContent = fmt1((T.modis_n + T.viirs_n) / 1e6, 2) + "M";
     document.getElementById("t-rows-n").textContent = fmt(T.modis_n) + " MODIS + " + fmt(T.viirs_n) + " VIIRS, after cleaning";
@@ -396,7 +445,7 @@ footer a { color: var(--ink-2); }
       drawMap(); return;
     }
     const c = cells.find((c) => p.lat >= c.lat0 && p.lat < c.lat0 + G && p.lon >= c.lon0 && p.lon < c.lon0 + G);
-    if (c) showTip("<b>" + fmt1(-c.lat0 - G / 2, 2) + "°S " + fmt1(c.lon0 + G / 2, 2) + "°E</b><br>Harmonised: " + fmt(c.h) + "<br>k for this square: " + fmt1(c.k, 3), e.clientX, e.clientY);
+    if (c) showTip("<b>" + fmt1(-c.lat0 - G / 2, 2) + "°S " + fmt1(c.lon0 + G / 2, 2) + "°E</b><br>Harmonised (ML): " + fmt(c.hm) + "<br>Harmonised (ratio): " + fmt(c.hr) + "<br>k for this square: " + fmt1(c.k, 3), e.clientX, e.clientY);
     else hideTip();
   });
   map.addEventListener("pointerleave", hideTip);
@@ -489,7 +538,7 @@ footer a { color: var(--ink-2); }
     const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": opts.aria }, host);
     const n = opts.labels.length;
     const vis = opts.series.filter((s) => !s.hidden);
-    let mx = 0; vis.forEach((s) => s.values.forEach((v) => { if (v > mx) mx = v; })); if (opts.band) opts.band.hi.forEach((v) => { if (v > mx) mx = v; });
+    let mx = 0; vis.forEach((s) => s.values.forEach((v) => { if (v != null && v > mx) mx = v; })); if (opts.band) opts.band.hi.forEach((v) => { if (v > mx) mx = v; });
     const ymax = niceMax(mx * 1.05);
     const X = (i) => m.l + (n <= 1 ? 0 : i * (W - m.l - m.r) / (n - 1));
     const Y = (v) => H - m.b - (v / ymax) * (H - m.t - m.b);
@@ -510,7 +559,8 @@ footer a { color: var(--ink-2); }
       el("path", { d: up + dn + "Z", fill: b.color, opacity: 0.18, stroke: "none" }, svg);
     }
     vis.forEach((s) => {
-      const d = s.values.map((v, i) => (i ? "L" : "M") + X(i).toFixed(1) + " " + Y(v).toFixed(1)).join("");
+      let d = "", pen = false;
+      s.values.forEach((v, i) => { if (v == null || isNaN(v)) { pen = false; return; } d += (pen ? "L" : "M") + X(i).toFixed(1) + " " + Y(v).toFixed(1); pen = true; });
       el("path", { d, fill: "none", stroke: s.color, "stroke-width": 2, "stroke-linejoin": "round", "stroke-linecap": "round", "stroke-dasharray": s.dash || "none" }, svg);
     });
     const cross = el("line", { y1: m.t, y2: H - m.b, stroke: "var(--muted)", "stroke-width": 1, opacity: 0 }, svg);
@@ -522,7 +572,7 @@ footer a { color: var(--ink-2); }
       cross.setAttribute("x1", X(i)); cross.setAttribute("x2", X(i)); cross.setAttribute("opacity", 1);
       let h = "<b>" + opts.tipTitle(i) + "</b>";
       if (opts.band) h += "<br>Range of all years: " + fmt(opts.band.lo[i]) + "–" + fmt(opts.band.hi[i]);
-      vis.forEach((s, k) => { dots[k].setAttribute("cx", X(i)); dots[k].setAttribute("cy", Y(s.values[i])); dots[k].setAttribute("opacity", 1); h += "<br>" + s.name + ": " + fmt(s.values[i]); });
+      vis.forEach((s, k) => { const v = s.values[i]; if (v == null || isNaN(v)) { dots[k].setAttribute("opacity", 0); h += "<br>" + s.name + ": –"; return; } dots[k].setAttribute("cx", X(i)); dots[k].setAttribute("cy", Y(v)); dots[k].setAttribute("opacity", 1); h += "<br>" + s.name + ": " + fmt(v); });
       showTip(h, e.clientX, e.clientY);
     });
     hit.addEventListener("mouseleave", () => { cross.setAttribute("opacity", 0); dots.forEach((d) => d.setAttribute("opacity", 0)); hideTip(); });
@@ -546,7 +596,7 @@ footer a { color: var(--ink-2); }
     const series = [
       { id: "M", name: "MODIS raw", color: "var(--s-modis)", values: M, hidden: !weekVis.M },
       { id: "V", name: "VIIRS raw", color: "var(--s-viirs)", values: V, hidden: !weekVis.V },
-      { id: "H", name: "VIIRS harmonised", color: "var(--s-harm)", values: H, hidden: !weekVis.H, dash: "6 4" },
+      { id: "H", name: method === "ml" ? "VIIRS harmonised (ML)" : "VIIRS harmonised (ratio)", color: "var(--s-harm)", values: H, hidden: !weekVis.H, dash: "6 4" },
     ];
     const ticks = [];
     for (let w = 0; w < nw; w++) { const d = dateOf(w * 7); if (d.getUTCDate() <= 7 && [0, 6].includes(d.getUTCMonth())) ticks.push([w, MONTHS[d.getUTCMonth()] + " " + d.getUTCFullYear()]); }
@@ -615,11 +665,18 @@ footer a { color: var(--ink-2); }
 
   // ---------- method tables ----------
   function methodTables() {
-    const v = D.validation.detections.results;
-    const names = { "identity (no harmonisation)": "No harmonisation", "national factor": "One national K", "cell factor + shrinkage (Fire Pulse)": "Per-square k (Fire Pulse)" };
+    const v = HAS_ML ? D.ml.results : D.validation.detections.results;
+    const names = { "identity (no harmonisation)": "No harmonisation", "national factor": "One national K", "cell factor + shrinkage (Fire Pulse)": "Per-square ratio k", "gradient boosting (ML)": "Machine learning (gradient boosting)" };
     let h = "<thead><tr><th>Method</th><th>Weekly error</th><th>Per-square error</th></tr></thead><tbody>";
     for (const k in v) h += `<tr><td>${names[k] || k}</td><td>${fmt1(v[k].weekly_national_error_pct)}%</td><td>${fmt1(v[k].median_cell_error_pct)}%</td></tr>`;
     document.getElementById("valtable").innerHTML = h + "</tbody>";
+    if (HAS_ML) {
+      const rb = D.ml.robustness, imp = D.ml.importance.slice(0, 4);
+      let t = "";
+      if (rb) t += `<b>Not luck:</b> trained on ${years[0]} alone and tested on the later years, ML scored ${fmt1(rb["gradient boosting (ML)"].weekly_national_error_pct)}% weekly error against ${fmt1(rb["cell factor + shrinkage (Fire Pulse)"].weekly_national_error_pct)}% for the ratio. `;
+      t += "<b>What the model relies on most:</b> " + imp.map((x) => x.feature.toLowerCase()).join(", ") + ".";
+      document.getElementById("mlnote").innerHTML = t;
+    }
     const Y = D.yearly || [];
     h = "<thead><tr><th>Year</th><th>MODIS</th><th>VIIRS</th><th>K</th><th>K day</th><th>K night</th></tr></thead><tbody>";
     Y.forEach((r) => { h += `<tr><td>${r.year}</td><td>${fmt(r.modis)}</td><td>${fmt(r.viirs)}</td><td>${fmt1(r.k, 3)}</td><td>${r.k_day == null ? "–" : fmt1(r.k_day, 3)}</td><td>${r.k_night == null ? "–" : fmt1(r.k_night, 3)}</td></tr>`; });
@@ -705,15 +762,94 @@ footer a { color: var(--ink-2); }
     el.textContent = txt;
   }
 
+
+  // ---------- 2026 contest and 2027 forecast ----------
+  const FC = D.forecast || null;
+  const MNAMES = { climatology: "Climatology (3-year average)", median: "Median of 3 years", persistence: "Same as last year (2025)", ensemble: "Ensemble (average + last year)", ensemble_enso: "Ensemble + El Niño analog", ml_gbm: "Machine learning (gradient boosting)" };
+  if (FC) {
+    cells.forEach((c) => {
+      c.mm = [new Float64Array(12), new Float64Array(12), new Float64Array(12)];
+      for (const r of c.s) { const y = dayY[r[0]] - years[0]; if (y >= 0 && y < 3) c.mm[y][dayM[r[0]]] += r[1]; }
+      c.y26 = new Float64Array(12); (FC.y26[c.key] || []).forEach(([m, n]) => { c.y26[m - 1] = n; });
+    });
+  }
+  const med3 = (a, b, c) => Math.max(Math.min(a, b), Math.min(Math.max(a, b), c));
+  function regionForecast() {
+    const S = new Set(FC.months_scored);
+    const act = new Array(12).fill(null), med = new Array(12).fill(0), clim = new Array(12).fill(0), f27 = new Array(12).fill(0);
+    for (let m = 0; m < 12; m++) if (S.has(m + 1)) act[m] = 0;
+    for (const c of cells) {
+      if (!inBox(c, region.box)) continue;
+      for (let m = 0; m < 12; m++) {
+        const a = c.mm[0][m], b = c.mm[1][m], d = c.mm[2][m];
+        med[m] += med3(a, b, d); clim[m] += (a + b + d) / 3;
+        if (S.has(m + 1)) { act[m] += c.y26[m]; f27[m] += med3(b, d, c.y26[m]); } else f27[m] += med3(a, b, d);
+      }
+    }
+    return { act, med, clim, f27, S };
+  }
+  function forecastSection() {
+    if (!FC) { document.getElementById("forecast").style.display = "none"; return; }
+    if (FC.check) { const c = FC.check; document.getElementById("fccheck").innerHTML = `<b>Independent check with VIIRS S-NPP:</b> S-NPP recorded ${fmt(c.snpp_2026)} detections over Australia in January–October 2026, fewer than its twin VIIRS sensor on NOAA-20 recorded in any of 2023–2025 (${fmt(c.noaa20_min)} to ${fmt(c.noaa20_max)}). The MODIS ÷ S-NPP factor in 2026 (${fmt1(c.k_snpp_2026, 3)}) matches the 2019–20 value (${fmt1(c.k_snpp_2019, 3)}), so MODIS has not lost sensitivity: 2026 really was a quieter fire year.`; }
+    const L = FC.leaderboard;
+    let h = "<thead><tr><th>Rank</th><th>Algorithm</th><th>Monthly error</th><th>Total error</th><th>Per-region</th><th>Per-square</th></tr></thead><tbody>";
+    L.forEach((r, i) => {
+      h += `<tr class="${i === 0 ? "winrow" : ""}"><td>${i + 1}</td><td>${MNAMES[r.method] || r.method}${i === 0 ? ' <span class="pill win">Winner</span>' : ""}</td><td>${fmt1(r.national_monthly_error_pct)}%</td><td>${fmt1(r.national_total_error_pct)}%</td><td>${fmt1(r.regional_monthly_median_error_pct)}%</td><td>${fmt1(r.per_square_median_error_pct)}%</td></tr>`;
+    });
+    document.getElementById("leader").innerHTML = h + "</tbody>";
+    document.getElementById("lockline").textContent = "Predictions locked " + FC.frozen_at_utc.replace("T", " ").replace("+00:00", " UTC") + " (SHA-256 " + FC.sha256.slice(0, 12) + "…), scored " + FC.scored_at_utc.replace("T", " ").replace("+00:00", " UTC") + ". Rank = average rank across monthly, per-region and per-square error.";
+    document.getElementById("fc-actual").textContent = fmt(FC.actual_total);
+    const w = L[0];
+    document.getElementById("fc-win").textContent = (MNAMES[w.method] || w.method).split(" (")[0];
+    document.getElementById("fc-win-l").textContent = "Winner: 2026 total off by only " + fmt1(w.national_total_error_pct) + "%, monthly error " + fmt1(w.national_monthly_error_pct) + "%";
+    const R = regionForecast();
+    const z = 1.2816, sdm = FC.sd_month, sdy = FC.sd_year;
+    const tot = R.f27.reduce((a, b) => a + b, 0);
+    document.getElementById("fc-27").textContent = fmt(tot);
+    document.getElementById("fc-27-l").textContent = "2027 forecast for " + region.name + " (80% range " + fmt(Math.exp(Math.log(tot + 1) - z * sdy) - 1) + "–" + fmt(Math.exp(Math.log(tot + 1) + z * sdy) - 1) + " MODIS detections)";
+    document.getElementById("fcA-h").textContent = "2026 in " + region.name + ": forecasts against reality";
+    document.getElementById("fcB-h").textContent = "2027 forecast for " + region.name;
+    const months = MONTHS.slice();
+    const sA = [
+      { name: "Real 2026 (NASA MODIS)", color: "var(--ink)", values: R.act },
+      { name: "Median of 3 years (winner)", color: "var(--accent)", values: R.med.map((v, m) => (R.S.has(m + 1) ? v : null)) },
+      { name: "3-year average", color: "var(--muted)", values: R.clim.map((v, m) => (R.S.has(m + 1) ? v : null)), dash: "5 4" },
+    ];
+    legend(document.getElementById("fcAlegend"), sA, null);
+    lineChart(document.getElementById("fcA"), { labels: months, series: sA, xTicks: [0, 3, 6, 9, 11].map((m) => [m, months[m]]), height: 230,
+      aria: "Monthly MODIS detections in 2026: real values against the winning and baseline forecasts", tipTitle: (m) => months[m] + " 2026" });
+    const lo = R.f27.map((p) => Math.max(0, Math.expm1(Math.log1p(p) - z * sdm))), hi = R.f27.map((p) => Math.expm1(Math.log1p(p) + z * sdm));
+    const sB = [
+      { name: "2027 forecast (median method)", color: "var(--accent)", values: R.f27 },
+      { name: "Real 2026", color: "var(--ink)", values: R.act, dash: "2 4" },
+    ];
+    const lg = document.getElementById("fcBlegend"); legend(lg, sB, null);
+    const band = document.createElement("span"); band.className = "key"; band.innerHTML = "<span class='sw' style='background:var(--accent);opacity:.3'></span>80% range"; lg.appendChild(band);
+    lineChart(document.getElementById("fcB"), { labels: months, series: sB, band: { lo, hi, color: "var(--accent)" }, xTicks: [0, 3, 6, 9, 11].map((m) => [m, months[m]]), height: 230,
+      aria: "Monthly 2027 forecast with 80% range", tipTitle: (m) => months[m] + " 2027" });
+    const aSum = region.preset === "aus" ? FC.actual_total : R.act.reduce((a, b) => a + (b || 0), 0), cSum = R.clim.reduce((a, b, m) => a + (R.S.has(m + 1) ? b : 0), 0);
+    document.getElementById("fcwhy").innerHTML = `<b>Why the median won:</b> 2026 was a quiet year. In ${region.name} it had ${fmt(aSum)} detections in January–October against a 2023–2025 average of ${fmt(cSum)} for the same months. The average is pulled up by 2023's extreme spring; the median ignores that one outlier year. The El Niño analog did worst: an El Niño year did not bring more detections in 2026, so treating 2023 as a template failed. <b>How 2027 is forecast:</b> for each 50 km square and month, the median of 2024, 2025 and 2026 (November and December use 2023–2025, because 2026 is not complete). The 80% range is sized from the winner's real 2026 errors.`;
+  }
+
   // ---------- update ----------
   function update() {
     A = aggregate();
     document.querySelectorAll("#presets .chip").forEach((b) => b.setAttribute("aria-pressed", b.dataset.id === region.preset ? "true" : "false"));
     let tm = 0, th = 0; for (let i = 0; i < N; i++) { tm += A.M[i]; th += A.H[i]; }
     document.getElementById("regionline").innerHTML = `<b>${region.name}</b> · ${A.n.toLocaleString("en-AU")} squares · ${fmt(th)} harmonised detections (MODIS saw ${fmt(tm)})`;
-    computeThresholds(); drawMap(); drawCal(); calLegend(); const S = season(); glance(S); typical(); weekly(); falseTrend(); peaks();
+    computeThresholds(); drawMap(); drawCal(); calLegend(); const S = season(); glance(S); typical(); weekly(); falseTrend(); peaks(); forecastSection();
   }
 
+  document.querySelectorAll("#method button").forEach((b) => {
+    if (!HAS_ML && b.dataset.m === "ml") { b.disabled = true; }
+    b.addEventListener("click", () => {
+      if (b.disabled) return;
+      method = b.dataset.m;
+      document.querySelectorAll("#method button").forEach((x) => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      cells.forEach((c) => { c.h = method === "ml" ? c.hm : c.hr; }); HMAX = hmax(); tiles(); update();
+    });
+  });
+  if (!HAS_ML) { cells.forEach((c) => { c.h = c.hr; }); document.querySelector('#method [data-m="ratio"]').setAttribute("aria-pressed", "true"); document.querySelector('#method [data-m="ml"]').setAttribute("aria-pressed", "false"); }
   tiles(); methodTables(); HMAX = hmax();
   update();
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { mapGeom = null; update(); }, 150); });

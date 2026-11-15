@@ -1,0 +1,13 @@
+{
+  "frozen_at_utc": "2026-11-15T06:40:41+00:00",
+  "trained_on": "MODIS 2023\u20132025 only; no 2026 data used",
+  "sha256": "ff60301d98cd6d86619c0088af30c4a73b39f24d5d3410516f943ae15ea15eb3",
+  "methods": {
+    "climatology": "Climatology: average of the same month in 2023\u20132025",
+    "median": "Robust climatology: median of the same month in 2023\u20132025",
+    "persistence": "Persistence: same month last year (2025)",
+    "ensemble": "Ensemble: average of climatology and persistence",
+    "ensemble_enso": "Ensemble + El Ni\u00f1o analog: adds 2023 (an El Ni\u00f1o year) for Jun\u2013Dec, as BoM declared El Ni\u00f1o in June 2026",
+    "ml_gbm": "Machine learning: gradient boosting (Poisson) on each square's history, month and location"
+  }
+}

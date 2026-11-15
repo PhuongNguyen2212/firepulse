@@ -1,0 +1,3036 @@
+{
+  "scored_at_utc": "2026-11-15T07:09:24+00:00",
+  "predictions_frozen_at_utc": "2026-11-15T06:40:41+00:00",
+  "hash_verified": true,
+  "months_scored": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "last_detection_date": "2026-11-14",
+  "data_note": "archive rows: vegetation fires only (type 0); 62,586 NRT rows kept (no type column)",
+  "actual_2026_detections_scored": 128407,
+  "results": [
+    {
+      "method": "median",
+      "description": "Robust climatology: median of the same month in 2023\u20132025",
+      "national_monthly_error_pct": 36.4,
+      "national_total_error_pct": 1.2,
+      "regional_monthly_median_error_pct": 41.0,
+      "per_square_median_error_pct": 57.6,
+      "skill_national_monthly": 0.574,
+      "skill_regional_monthly_median": 0.314,
+      "skill_per_square_median": 0.02,
+      "rank_score": 1.3333333333333333
+    },
+    {
+      "method": "ml_gbm",
+      "description": "Machine learning: gradient boosting (Poisson) on each square's history, month and location",
+      "national_monthly_error_pct": 75.4,
+      "national_total_error_pct": 39.0,
+      "regional_monthly_median_error_pct": 64.1,
+      "per_square_median_error_pct": 55.6,
+      "skill_national_monthly": 0.118,
+      "skill_regional_monthly_median": -0.072,
+      "skill_per_square_median": 0.054,
+      "rank_score": 3.0
+    },
+    {
+      "method": "ensemble",
+      "description": "Ensemble: average of climatology and persistence",
+      "national_monthly_error_pct": 93.9,
+      "national_total_error_pct": 61.5,
+      "regional_monthly_median_error_pct": 58.2,
+      "per_square_median_error_pct": 57.7,
+      "skill_national_monthly": -0.098,
+      "skill_regional_monthly_median": 0.027,
+      "skill_per_square_median": 0.019,
+      "rank_score": 3.3333333333333335
+    },
+    {
+      "method": "climatology",
+      "description": "Climatology: average of the same month in 2023\u20132025",
+      "national_monthly_error_pct": 85.5,
+      "national_total_error_pct": 66.2,
+      "regional_monthly_median_error_pct": 59.8,
+      "per_square_median_error_pct": 58.8,
+      "skill_national_monthly": 0.0,
+      "skill_regional_monthly_median": 0.0,
+      "skill_per_square_median": 0.0,
+      "rank_score": 3.6666666666666665
+    },
+    {
+      "method": "persistence",
+      "description": "Persistence: same month last year (2025)",
+      "national_monthly_error_pct": 103.2,
+      "national_total_error_pct": 56.8,
+      "regional_monthly_median_error_pct": 55.3,
+      "per_square_median_error_pct": 62.6,
+      "skill_national_monthly": -0.207,
+      "skill_regional_monthly_median": 0.075,
+      "skill_per_square_median": -0.065,
+      "rank_score": 4.333333333333333
+    },
+    {
+      "method": "ensemble_enso",
+      "description": "Ensemble + El Ni\u00f1o analog: adds 2023 (an El Ni\u00f1o year) for Jun\u2013Dec, as BoM declared El Ni\u00f1o in June 2026",
+      "national_monthly_error_pct": 105.8,
+      "national_total_error_pct": 78.6,
+      "regional_monthly_median_error_pct": 60.1,
+      "per_square_median_error_pct": 59.5,
+      "skill_national_monthly": -0.237,
+      "skill_regional_monthly_median": -0.005,
+      "skill_per_square_median": -0.012,
+      "rank_score": 5.333333333333333
+    }
+  ],
+  "monthly": [
+    {
+      "method": "climatology",
+      "region": "All Australia",
+      "month": 1,
+      "prediction": 8812.3,
+      "actual": 8900
+    },
+    {
+      "method": "climatology",
+      "region": "All Australia",
+      "month": 2,
+      "prediction": 4775.0,
+      "actual": 1472
+    },
+    {
+      "method": "climatology",
+      "region": "All Australia",
+      "month": 3,
+      "prediction": 7809.3,
+      "actual": 3583
+    },
+    {
+      "method": "climatology",
+      "region": "All Australia",
+      "month": 4,
+      "prediction": 15774.7,
+      "actual": 15649
+    },
+    {
+      "method": "climatology",
+      "region": "All Australia",
+      "month": 5,
+      "prediction": 23901.7,
+      "actual": 11107
+    },
+    {
+      "method": "climatology",
+      "region": "All Australia",
+      "month": 6,
+      "prediction": 14929.7,
+      "actual": 15303
+    },
+    {
+      "method": "climatology",
+      "region": "All Australia",
+      "month": 7,
+      "prediction": 15216.0,
+      "actual": 21004
+    },
+    {
+      "method": "climatology",
+      "region": "All Australia",
+      "month": 8,
+      "prediction": 18686.0,
+      "actual": 14304
+    },
+    {
+      "method": "climatology",
+      "region": "All Australia",
+      "month": 9,
+      "prediction": 28489.0,
+      "actual": 16152
+    },
+    {
+      "method": "climatology",
+      "region": "All Australia",
+      "month": 10,
+      "prediction": 75041.3,
+      "actual": 20933
+    },
+    {
+      "method": "climatology",
+      "region": "Top End (NT)",
+      "month": 1,
+      "prediction": 177.0,
+      "actual": 54
+    },
+    {
+      "method": "climatology",
+      "region": "Top End (NT)",
+      "month": 2,
+      "prediction": 59.7,
+      "actual": 8
+    },
+    {
+      "method": "climatology",
+      "region": "Top End (NT)",
+      "month": 3,
+      "prediction": 128.3,
+      "actual": 28
+    },
+    {
+      "method": "climatology",
+      "region": "Top End (NT)",
+      "month": 4,
+      "prediction": 1173.3,
+      "actual": 970
+    },
+    {
+      "method": "climatology",
+      "region": "Top End (NT)",
+      "month": 5,
+      "prediction": 7936.7,
+      "actual": 3736
+    },
+    {
+      "method": "climatology",
+      "region": "Top End (NT)",
+      "month": 6,
+      "prediction": 7332.0,
+      "actual": 7072
+    },
+    {
+      "method": "climatology",
+      "region": "Top End (NT)",
+      "month": 7,
+      "prediction": 6850.7,
+      "actual": 9675
+    },
+    {
+      "method": "climatology",
+      "region": "Top End (NT)",
+      "month": 8,
+      "prediction": 6137.7,
+      "actual": 4646
+    },
+    {
+      "method": "climatology",
+      "region": "Top End (NT)",
+      "month": 9,
+      "prediction": 4707.0,
+      "actual": 4317
+    },
+    {
+      "method": "climatology",
+      "region": "Top End (NT)",
+      "month": 10,
+      "prediction": 7131.3,
+      "actual": 4486
+    },
+    {
+      "method": "climatology",
+      "region": "Kimberley (WA)",
+      "month": 1,
+      "prediction": 454.0,
+      "actual": 145
+    },
+    {
+      "method": "climatology",
+      "region": "Kimberley (WA)",
+      "month": 2,
+      "prediction": 225.0,
+      "actual": 4
+    },
+    {
+      "method": "climatology",
+      "region": "Kimberley (WA)",
+      "month": 3,
+      "prediction": 1273.0,
+      "actual": 666
+    },
+    {
+      "method": "climatology",
+      "region": "Kimberley (WA)",
+      "month": 4,
+      "prediction": 4208.0,
+      "actual": 5797
+    },
+    {
+      "method": "climatology",
+      "region": "Kimberley (WA)",
+      "month": 5,
+      "prediction": 7398.7,
+      "actual": 1964
+    },
+    {
+      "method": "climatology",
+      "region": "Kimberley (WA)",
+      "month": 6,
+      "prediction": 1797.0,
+      "actual": 2892
+    },
+    {
+      "method": "climatology",
+      "region": "Kimberley (WA)",
+      "month": 7,
+      "prediction": 1626.0,
+      "actual": 1580
+    },
+    {
+      "method": "climatology",
+      "region": "Kimberley (WA)",
+      "month": 8,
+      "prediction": 2497.0,
+      "actual": 1082
+    },
+    {
+      "method": "climatology",
+      "region": "Kimberley (WA)",
+      "month": 9,
+      "prediction": 4401.3,
+      "actual": 1007
+    },
+    {
+      "method": "climatology",
+      "region": "Kimberley (WA)",
+      "month": 10,
+      "prediction": 9151.7,
+      "actual": 2595
+    },
+    {
+      "method": "climatology",
+      "region": "Cape York (QLD)",
+      "month": 1,
+      "prediction": 11.3,
+      "actual": 5
+    },
+    {
+      "method": "climatology",
+      "region": "Cape York (QLD)",
+      "month": 2,
+      "prediction": 0.3,
+      "actual": 7
+    },
+    {
+      "method": "climatology",
+      "region": "Cape York (QLD)",
+      "month": 3,
+      "prediction": 0.0,
+      "actual": 0
+    },
+    {
+      "method": "climatology",
+      "region": "Cape York (QLD)",
+      "month": 4,
+      "prediction": 5.0,
+      "actual": 16
+    },
+    {
+      "method": "climatology",
+      "region": "Cape York (QLD)",
+      "month": 5,
+      "prediction": 247.7,
+      "actual": 424
+    },
+    {
+      "method": "climatology",
+      "region": "Cape York (QLD)",
+      "month": 6,
+      "prediction": 1421.0,
+      "actual": 2614
+    },
+    {
+      "method": "climatology",
+      "region": "Cape York (QLD)",
+      "month": 7,
+      "prediction": 3102.7,
+      "actual": 4632
+    },
+    {
+      "method": "climatology",
+      "region": "Cape York (QLD)",
+      "month": 8,
+      "prediction": 1598.3,
+      "actual": 1406
+    },
+    {
+      "method": "climatology",
+      "region": "Cape York (QLD)",
+      "month": 9,
+      "prediction": 1328.3,
+      "actual": 1527
+    },
+    {
+      "method": "climatology",
+      "region": "Cape York (QLD)",
+      "month": 10,
+      "prediction": 3637.0,
+      "actual": 1770
+    },
+    {
+      "method": "climatology",
+      "region": "Central Australia",
+      "month": 1,
+      "prediction": 1308.7,
+      "actual": 621
+    },
+    {
+      "method": "climatology",
+      "region": "Central Australia",
+      "month": 2,
+      "prediction": 848.3,
+      "actual": 10
+    },
+    {
+      "method": "climatology",
+      "region": "Central Australia",
+      "month": 3,
+      "prediction": 422.0,
+      "actual": 102
+    },
+    {
+      "method": "climatology",
+      "region": "Central Australia",
+      "month": 4,
+      "prediction": 260.0,
+      "actual": 199
+    },
+    {
+      "method": "climatology",
+      "region": "Central Australia",
+      "month": 5,
+      "prediction": 364.3,
+      "actual": 108
+    },
+    {
+      "method": "climatology",
+      "region": "Central Australia",
+      "month": 6,
+      "prediction": 278.3,
+      "actual": 113
+    },
+    {
+      "method": "climatology",
+      "region": "Central Australia",
+      "month": 7,
+      "prediction": 190.3,
+      "actual": 132
+    },
+    {
+      "method": "climatology",
+      "region": "Central Australia",
+      "month": 8,
+      "prediction": 538.0,
+      "actual": 1363
+    },
+    {
+      "method": "climatology",
+      "region": "Central Australia",
+      "month": 9,
+      "prediction": 2226.0,
+      "actual": 1065
+    },
+    {
+      "method": "climatology",
+      "region": "Central Australia",
+      "month": 10,
+      "prediction": 12808.0,
+      "actual": 1113
+    },
+    {
+      "method": "climatology",
+      "region": "South East QLD",
+      "month": 1,
+      "prediction": 48.0,
+      "actual": 41
+    },
+    {
+      "method": "climatology",
+      "region": "South East QLD",
+      "month": 2,
+      "prediction": 39.3,
+      "actual": 69
+    },
+    {
+      "method": "climatology",
+      "region": "South East QLD",
+      "month": 3,
+      "prediction": 30.3,
+      "actual": 61
+    },
+    {
+      "method": "climatology",
+      "region": "South East QLD",
+      "month": 4,
+      "prediction": 48.7,
+      "actual": 119
+    },
+    {
+      "method": "climatology",
+      "region": "South East QLD",
+      "month": 5,
+      "prediction": 81.7,
+      "actual": 27
+    },
+    {
+      "method": "climatology",
+      "region": "South East QLD",
+      "month": 6,
+      "prediction": 86.0,
+      "actual": 81
+    },
+    {
+      "method": "climatology",
+      "region": "South East QLD",
+      "month": 7,
+      "prediction": 137.3,
+      "actual": 168
+    },
+    {
+      "method": "climatology",
+      "region": "South East QLD",
+      "month": 8,
+      "prediction": 524.3,
+      "actual": 297
+    },
+    {
+      "method": "climatology",
+      "region": "South East QLD",
+      "month": 9,
+      "prediction": 704.7,
+      "actual": 614
+    },
+    {
+      "method": "climatology",
+      "region": "South East QLD",
+      "month": 10,
+      "prediction": 537.3,
+      "actual": 126
+    },
+    {
+      "method": "climatology",
+      "region": "South West WA",
+      "month": 1,
+      "prediction": 209.7,
+      "actual": 334
+    },
+    {
+      "method": "climatology",
+      "region": "South West WA",
+      "month": 2,
+      "prediction": 233.7,
+      "actual": 37
+    },
+    {
+      "method": "climatology",
+      "region": "South West WA",
+      "month": 3,
+      "prediction": 494.7,
+      "actual": 267
+    },
+    {
+      "method": "climatology",
+      "region": "South West WA",
+      "month": 4,
+      "prediction": 1829.7,
+      "actual": 2220
+    },
+    {
+      "method": "climatology",
+      "region": "South West WA",
+      "month": 5,
+      "prediction": 1372.3,
+      "actual": 1156
+    },
+    {
+      "method": "climatology",
+      "region": "South West WA",
+      "month": 6,
+      "prediction": 115.0,
+      "actual": 81
+    },
+    {
+      "method": "climatology",
+      "region": "South West WA",
+      "month": 7,
+      "prediction": 36.0,
+      "actual": 35
+    },
+    {
+      "method": "climatology",
+      "region": "South West WA",
+      "month": 8,
+      "prediction": 56.3,
+      "actual": 31
+    },
+    {
+      "method": "climatology",
+      "region": "South West WA",
+      "month": 9,
+      "prediction": 231.7,
+      "actual": 96
+    },
+    {
+      "method": "climatology",
+      "region": "South West WA",
+      "month": 10,
+      "prediction": 290.0,
+      "actual": 191
+    },
+    {
+      "method": "median",
+      "region": "All Australia",
+      "month": 1,
+      "prediction": 3179.0,
+      "actual": 8900
+    },
+    {
+      "method": "median",
+      "region": "All Australia",
+      "month": 2,
+      "prediction": 1258.0,
+      "actual": 1472
+    },
+    {
+      "method": "median",
+      "region": "All Australia",
+      "month": 3,
+      "prediction": 3510.0,
+      "actual": 3583
+    },
+    {
+      "method": "median",
+      "region": "All Australia",
+      "month": 4,
+      "prediction": 12964.0,
+      "actual": 15649
+    },
+    {
+      "method": "median",
+      "region": "All Australia",
+      "month": 5,
+      "prediction": 19001.0,
+      "actual": 11107
+    },
+    {
+      "method": "median",
+      "region": "All Australia",
+      "month": 6,
+      "prediction": 11448.0,
+      "actual": 15303
+    },
+    {
+      "method": "median",
+      "region": "All Australia",
+      "month": 7,
+      "prediction": 12216.0,
+      "actual": 21004
+    },
+    {
+      "method": "median",
+      "region": "All Australia",
+      "month": 8,
+      "prediction": 12251.0,
+      "actual": 14304
+    },
+    {
+      "method": "median",
+      "region": "All Australia",
+      "month": 9,
+      "prediction": 13231.0,
+      "actual": 16152
+    },
+    {
+      "method": "median",
+      "region": "All Australia",
+      "month": 10,
+      "prediction": 40901.0,
+      "actual": 20933
+    },
+    {
+      "method": "median",
+      "region": "Top End (NT)",
+      "month": 1,
+      "prediction": 94.0,
+      "actual": 54
+    },
+    {
+      "method": "median",
+      "region": "Top End (NT)",
+      "month": 2,
+      "prediction": 21.0,
+      "actual": 8
+    },
+    {
+      "method": "median",
+      "region": "Top End (NT)",
+      "month": 3,
+      "prediction": 31.0,
+      "actual": 28
+    },
+    {
+      "method": "median",
+      "region": "Top End (NT)",
+      "month": 4,
+      "prediction": 962.0,
+      "actual": 970
+    },
+    {
+      "method": "median",
+      "region": "Top End (NT)",
+      "month": 5,
+      "prediction": 7221.0,
+      "actual": 3736
+    },
+    {
+      "method": "median",
+      "region": "Top End (NT)",
+      "month": 6,
+      "prediction": 6737.0,
+      "actual": 7072
+    },
+    {
+      "method": "median",
+      "region": "Top End (NT)",
+      "month": 7,
+      "prediction": 6418.0,
+      "actual": 9675
+    },
+    {
+      "method": "median",
+      "region": "Top End (NT)",
+      "month": 8,
+      "prediction": 4806.0,
+      "actual": 4646
+    },
+    {
+      "method": "median",
+      "region": "Top End (NT)",
+      "month": 9,
+      "prediction": 3447.0,
+      "actual": 4317
+    },
+    {
+      "method": "median",
+      "region": "Top End (NT)",
+      "month": 10,
+      "prediction": 4805.0,
+      "actual": 4486
+    },
+    {
+      "method": "median",
+      "region": "Kimberley (WA)",
+      "month": 1,
+      "prediction": 126.0,
+      "actual": 145
+    },
+    {
+      "method": "median",
+      "region": "Kimberley (WA)",
+      "month": 2,
+      "prediction": 81.0,
+      "actual": 4
+    },
+    {
+      "method": "median",
+      "region": "Kimberley (WA)",
+      "month": 3,
+      "prediction": 643.0,
+      "actual": 666
+    },
+    {
+      "method": "median",
+      "region": "Kimberley (WA)",
+      "month": 4,
+      "prediction": 3745.0,
+      "actual": 5797
+    },
+    {
+      "method": "median",
+      "region": "Kimberley (WA)",
+      "month": 5,
+      "prediction": 6040.0,
+      "actual": 1964
+    },
+    {
+      "method": "median",
+      "region": "Kimberley (WA)",
+      "month": 6,
+      "prediction": 1158.0,
+      "actual": 2892
+    },
+    {
+      "method": "median",
+      "region": "Kimberley (WA)",
+      "month": 7,
+      "prediction": 1024.0,
+      "actual": 1580
+    },
+    {
+      "method": "median",
+      "region": "Kimberley (WA)",
+      "month": 8,
+      "prediction": 1243.0,
+      "actual": 1082
+    },
+    {
+      "method": "median",
+      "region": "Kimberley (WA)",
+      "month": 9,
+      "prediction": 1437.0,
+      "actual": 1007
+    },
+    {
+      "method": "median",
+      "region": "Kimberley (WA)",
+      "month": 10,
+      "prediction": 5921.0,
+      "actual": 2595
+    },
+    {
+      "method": "median",
+      "region": "Cape York (QLD)",
+      "month": 1,
+      "prediction": 5.0,
+      "actual": 5
+    },
+    {
+      "method": "median",
+      "region": "Cape York (QLD)",
+      "month": 2,
+      "prediction": 0.0,
+      "actual": 7
+    },
+    {
+      "method": "median",
+      "region": "Cape York (QLD)",
+      "month": 3,
+      "prediction": 0.0,
+      "actual": 0
+    },
+    {
+      "method": "median",
+      "region": "Cape York (QLD)",
+      "month": 4,
+      "prediction": 0.0,
+      "actual": 16
+    },
+    {
+      "method": "median",
+      "region": "Cape York (QLD)",
+      "month": 5,
+      "prediction": 183.0,
+      "actual": 424
+    },
+    {
+      "method": "median",
+      "region": "Cape York (QLD)",
+      "month": 6,
+      "prediction": 1216.0,
+      "actual": 2614
+    },
+    {
+      "method": "median",
+      "region": "Cape York (QLD)",
+      "month": 7,
+      "prediction": 2885.0,
+      "actual": 4632
+    },
+    {
+      "method": "median",
+      "region": "Cape York (QLD)",
+      "month": 8,
+      "prediction": 1232.0,
+      "actual": 1406
+    },
+    {
+      "method": "median",
+      "region": "Cape York (QLD)",
+      "month": 9,
+      "prediction": 927.0,
+      "actual": 1527
+    },
+    {
+      "method": "median",
+      "region": "Cape York (QLD)",
+      "month": 10,
+      "prediction": 1717.0,
+      "actual": 1770
+    },
+    {
+      "method": "median",
+      "region": "Central Australia",
+      "month": 1,
+      "prediction": 260.0,
+      "actual": 621
+    },
+    {
+      "method": "median",
+      "region": "Central Australia",
+      "month": 2,
+      "prediction": 10.0,
+      "actual": 10
+    },
+    {
+      "method": "median",
+      "region": "Central Australia",
+      "month": 3,
+      "prediction": 17.0,
+      "actual": 102
+    },
+    {
+      "method": "median",
+      "region": "Central Australia",
+      "month": 4,
+      "prediction": 58.0,
+      "actual": 199
+    },
+    {
+      "method": "median",
+      "region": "Central Australia",
+      "month": 5,
+      "prediction": 39.0,
+      "actual": 108
+    },
+    {
+      "method": "median",
+      "region": "Central Australia",
+      "month": 6,
+      "prediction": 84.0,
+      "actual": 113
+    },
+    {
+      "method": "median",
+      "region": "Central Australia",
+      "month": 7,
+      "prediction": 49.0,
+      "actual": 132
+    },
+    {
+      "method": "median",
+      "region": "Central Australia",
+      "month": 8,
+      "prediction": 232.0,
+      "actual": 1363
+    },
+    {
+      "method": "median",
+      "region": "Central Australia",
+      "month": 9,
+      "prediction": 407.0,
+      "actual": 1065
+    },
+    {
+      "method": "median",
+      "region": "Central Australia",
+      "month": 10,
+      "prediction": 4527.0,
+      "actual": 1113
+    },
+    {
+      "method": "median",
+      "region": "South East QLD",
+      "month": 1,
+      "prediction": 28.0,
+      "actual": 41
+    },
+    {
+      "method": "median",
+      "region": "South East QLD",
+      "month": 2,
+      "prediction": 25.0,
+      "actual": 69
+    },
+    {
+      "method": "median",
+      "region": "South East QLD",
+      "month": 3,
+      "prediction": 18.0,
+      "actual": 61
+    },
+    {
+      "method": "median",
+      "region": "South East QLD",
+      "month": 4,
+      "prediction": 25.0,
+      "actual": 119
+    },
+    {
+      "method": "median",
+      "region": "South East QLD",
+      "month": 5,
+      "prediction": 53.0,
+      "actual": 27
+    },
+    {
+      "method": "median",
+      "region": "South East QLD",
+      "month": 6,
+      "prediction": 72.0,
+      "actual": 81
+    },
+    {
+      "method": "median",
+      "region": "South East QLD",
+      "month": 7,
+      "prediction": 116.0,
+      "actual": 168
+    },
+    {
+      "method": "median",
+      "region": "South East QLD",
+      "month": 8,
+      "prediction": 521.0,
+      "actual": 297
+    },
+    {
+      "method": "median",
+      "region": "South East QLD",
+      "month": 9,
+      "prediction": 644.0,
+      "actual": 614
+    },
+    {
+      "method": "median",
+      "region": "South East QLD",
+      "month": 10,
+      "prediction": 331.0,
+      "actual": 126
+    },
+    {
+      "method": "median",
+      "region": "South West WA",
+      "month": 1,
+      "prediction": 75.0,
+      "actual": 334
+    },
+    {
+      "method": "median",
+      "region": "South West WA",
+      "month": 2,
+      "prediction": 16.0,
+      "actual": 37
+    },
+    {
+      "method": "median",
+      "region": "South West WA",
+      "month": 3,
+      "prediction": 360.0,
+      "actual": 267
+    },
+    {
+      "method": "median",
+      "region": "South West WA",
+      "month": 4,
+      "prediction": 1632.0,
+      "actual": 2220
+    },
+    {
+      "method": "median",
+      "region": "South West WA",
+      "month": 5,
+      "prediction": 1260.0,
+      "actual": 1156
+    },
+    {
+      "method": "median",
+      "region": "South West WA",
+      "month": 6,
+      "prediction": 84.0,
+      "actual": 81
+    },
+    {
+      "method": "median",
+      "region": "South West WA",
+      "month": 7,
+      "prediction": 18.0,
+      "actual": 35
+    },
+    {
+      "method": "median",
+      "region": "South West WA",
+      "month": 8,
+      "prediction": 31.0,
+      "actual": 31
+    },
+    {
+      "method": "median",
+      "region": "South West WA",
+      "month": 9,
+      "prediction": 191.0,
+      "actual": 96
+    },
+    {
+      "method": "median",
+      "region": "South West WA",
+      "month": 10,
+      "prediction": 244.0,
+      "actual": 191
+    },
+    {
+      "method": "persistence",
+      "region": "All Australia",
+      "month": 1,
+      "prediction": 15046.0,
+      "actual": 8900
+    },
+    {
+      "method": "persistence",
+      "region": "All Australia",
+      "month": 2,
+      "prediction": 7856.0,
+      "actual": 1472
+    },
+    {
+      "method": "persistence",
+      "region": "All Australia",
+      "month": 3,
+      "prediction": 6588.0,
+      "actual": 3583
+    },
+    {
+      "method": "persistence",
+      "region": "All Australia",
+      "month": 4,
+      "prediction": 10573.0,
+      "actual": 15649
+    },
+    {
+      "method": "persistence",
+      "region": "All Australia",
+      "month": 5,
+      "prediction": 21588.0,
+      "actual": 11107
+    },
+    {
+      "method": "persistence",
+      "region": "All Australia",
+      "month": 6,
+      "prediction": 16060.0,
+      "actual": 15303
+    },
+    {
+      "method": "persistence",
+      "region": "All Australia",
+      "month": 7,
+      "prediction": 16628.0,
+      "actual": 21004
+    },
+    {
+      "method": "persistence",
+      "region": "All Australia",
+      "month": 8,
+      "prediction": 22596.0,
+      "actual": 14304
+    },
+    {
+      "method": "persistence",
+      "region": "All Australia",
+      "month": 9,
+      "prediction": 22250.0,
+      "actual": 16152
+    },
+    {
+      "method": "persistence",
+      "region": "All Australia",
+      "month": 10,
+      "prediction": 62159.0,
+      "actual": 20933
+    },
+    {
+      "method": "persistence",
+      "region": "Top End (NT)",
+      "month": 1,
+      "prediction": 327.0,
+      "actual": 54
+    },
+    {
+      "method": "persistence",
+      "region": "Top End (NT)",
+      "month": 2,
+      "prediction": 112.0,
+      "actual": 8
+    },
+    {
+      "method": "persistence",
+      "region": "Top End (NT)",
+      "month": 3,
+      "prediction": 282.0,
+      "actual": 28
+    },
+    {
+      "method": "persistence",
+      "region": "Top End (NT)",
+      "month": 4,
+      "prediction": 1202.0,
+      "actual": 970
+    },
+    {
+      "method": "persistence",
+      "region": "Top End (NT)",
+      "month": 5,
+      "prediction": 5658.0,
+      "actual": 3736
+    },
+    {
+      "method": "persistence",
+      "region": "Top End (NT)",
+      "month": 6,
+      "prediction": 9350.0,
+      "actual": 7072
+    },
+    {
+      "method": "persistence",
+      "region": "Top End (NT)",
+      "month": 7,
+      "prediction": 6960.0,
+      "actual": 9675
+    },
+    {
+      "method": "persistence",
+      "region": "Top End (NT)",
+      "month": 8,
+      "prediction": 7879.0,
+      "actual": 4646
+    },
+    {
+      "method": "persistence",
+      "region": "Top End (NT)",
+      "month": 9,
+      "prediction": 3292.0,
+      "actual": 4317
+    },
+    {
+      "method": "persistence",
+      "region": "Top End (NT)",
+      "month": 10,
+      "prediction": 5383.0,
+      "actual": 4486
+    },
+    {
+      "method": "persistence",
+      "region": "Kimberley (WA)",
+      "month": 1,
+      "prediction": 474.0,
+      "actual": 145
+    },
+    {
+      "method": "persistence",
+      "region": "Kimberley (WA)",
+      "month": 2,
+      "prediction": 271.0,
+      "actual": 4
+    },
+    {
+      "method": "persistence",
+      "region": "Kimberley (WA)",
+      "month": 3,
+      "prediction": 965.0,
+      "actual": 666
+    },
+    {
+      "method": "persistence",
+      "region": "Kimberley (WA)",
+      "month": 4,
+      "prediction": 1812.0,
+      "actual": 5797
+    },
+    {
+      "method": "persistence",
+      "region": "Kimberley (WA)",
+      "month": 5,
+      "prediction": 7434.0,
+      "actual": 1964
+    },
+    {
+      "method": "persistence",
+      "region": "Kimberley (WA)",
+      "month": 6,
+      "prediction": 2365.0,
+      "actual": 2892
+    },
+    {
+      "method": "persistence",
+      "region": "Kimberley (WA)",
+      "month": 7,
+      "prediction": 1879.0,
+      "actual": 1580
+    },
+    {
+      "method": "persistence",
+      "region": "Kimberley (WA)",
+      "month": 8,
+      "prediction": 4049.0,
+      "actual": 1082
+    },
+    {
+      "method": "persistence",
+      "region": "Kimberley (WA)",
+      "month": 9,
+      "prediction": 8542.0,
+      "actual": 1007
+    },
+    {
+      "method": "persistence",
+      "region": "Kimberley (WA)",
+      "month": 10,
+      "prediction": 8012.0,
+      "actual": 2595
+    },
+    {
+      "method": "persistence",
+      "region": "Cape York (QLD)",
+      "month": 1,
+      "prediction": 8.0,
+      "actual": 5
+    },
+    {
+      "method": "persistence",
+      "region": "Cape York (QLD)",
+      "month": 2,
+      "prediction": 1.0,
+      "actual": 7
+    },
+    {
+      "method": "persistence",
+      "region": "Cape York (QLD)",
+      "month": 3,
+      "prediction": 0.0,
+      "actual": 0
+    },
+    {
+      "method": "persistence",
+      "region": "Cape York (QLD)",
+      "month": 4,
+      "prediction": 0.0,
+      "actual": 16
+    },
+    {
+      "method": "persistence",
+      "region": "Cape York (QLD)",
+      "month": 5,
+      "prediction": 177.0,
+      "actual": 424
+    },
+    {
+      "method": "persistence",
+      "region": "Cape York (QLD)",
+      "month": 6,
+      "prediction": 968.0,
+      "actual": 2614
+    },
+    {
+      "method": "persistence",
+      "region": "Cape York (QLD)",
+      "month": 7,
+      "prediction": 2663.0,
+      "actual": 4632
+    },
+    {
+      "method": "persistence",
+      "region": "Cape York (QLD)",
+      "month": 8,
+      "prediction": 2155.0,
+      "actual": 1406
+    },
+    {
+      "method": "persistence",
+      "region": "Cape York (QLD)",
+      "month": 9,
+      "prediction": 828.0,
+      "actual": 1527
+    },
+    {
+      "method": "persistence",
+      "region": "Cape York (QLD)",
+      "month": 10,
+      "prediction": 3964.0,
+      "actual": 1770
+    },
+    {
+      "method": "persistence",
+      "region": "Central Australia",
+      "month": 1,
+      "prediction": 2950.0,
+      "actual": 621
+    },
+    {
+      "method": "persistence",
+      "region": "Central Australia",
+      "month": 2,
+      "prediction": 2026.0,
+      "actual": 10
+    },
+    {
+      "method": "persistence",
+      "region": "Central Australia",
+      "month": 3,
+      "prediction": 256.0,
+      "actual": 102
+    },
+    {
+      "method": "persistence",
+      "region": "Central Australia",
+      "month": 4,
+      "prediction": 48.0,
+      "actual": 199
+    },
+    {
+      "method": "persistence",
+      "region": "Central Australia",
+      "month": 5,
+      "prediction": 126.0,
+      "actual": 108
+    },
+    {
+      "method": "persistence",
+      "region": "Central Australia",
+      "month": 6,
+      "prediction": 99.0,
+      "actual": 113
+    },
+    {
+      "method": "persistence",
+      "region": "Central Australia",
+      "month": 7,
+      "prediction": 353.0,
+      "actual": 132
+    },
+    {
+      "method": "persistence",
+      "region": "Central Australia",
+      "month": 8,
+      "prediction": 384.0,
+      "actual": 1363
+    },
+    {
+      "method": "persistence",
+      "region": "Central Australia",
+      "month": 9,
+      "prediction": 644.0,
+      "actual": 1065
+    },
+    {
+      "method": "persistence",
+      "region": "Central Australia",
+      "month": 10,
+      "prediction": 3011.0,
+      "actual": 1113
+    },
+    {
+      "method": "persistence",
+      "region": "South East QLD",
+      "month": 1,
+      "prediction": 31.0,
+      "actual": 41
+    },
+    {
+      "method": "persistence",
+      "region": "South East QLD",
+      "month": 2,
+      "prediction": 45.0,
+      "actual": 69
+    },
+    {
+      "method": "persistence",
+      "region": "South East QLD",
+      "month": 3,
+      "prediction": 26.0,
+      "actual": 61
+    },
+    {
+      "method": "persistence",
+      "region": "South East QLD",
+      "month": 4,
+      "prediction": 56.0,
+      "actual": 119
+    },
+    {
+      "method": "persistence",
+      "region": "South East QLD",
+      "month": 5,
+      "prediction": 63.0,
+      "actual": 27
+    },
+    {
+      "method": "persistence",
+      "region": "South East QLD",
+      "month": 6,
+      "prediction": 64.0,
+      "actual": 81
+    },
+    {
+      "method": "persistence",
+      "region": "South East QLD",
+      "month": 7,
+      "prediction": 117.0,
+      "actual": 168
+    },
+    {
+      "method": "persistence",
+      "region": "South East QLD",
+      "month": 8,
+      "prediction": 534.0,
+      "actual": 297
+    },
+    {
+      "method": "persistence",
+      "region": "South East QLD",
+      "month": 9,
+      "prediction": 808.0,
+      "actual": 614
+    },
+    {
+      "method": "persistence",
+      "region": "South East QLD",
+      "month": 10,
+      "prediction": 557.0,
+      "actual": 126
+    },
+    {
+      "method": "persistence",
+      "region": "South West WA",
+      "month": 1,
+      "prediction": 190.0,
+      "actual": 334
+    },
+    {
+      "method": "persistence",
+      "region": "South West WA",
+      "month": 2,
+      "prediction": 459.0,
+      "actual": 37
+    },
+    {
+      "method": "persistence",
+      "region": "South West WA",
+      "month": 3,
+      "prediction": 577.0,
+      "actual": 267
+    },
+    {
+      "method": "persistence",
+      "region": "South West WA",
+      "month": 4,
+      "prediction": 1594.0,
+      "actual": 2220
+    },
+    {
+      "method": "persistence",
+      "region": "South West WA",
+      "month": 5,
+      "prediction": 1244.0,
+      "actual": 1156
+    },
+    {
+      "method": "persistence",
+      "region": "South West WA",
+      "month": 6,
+      "prediction": 102.0,
+      "actual": 81
+    },
+    {
+      "method": "persistence",
+      "region": "South West WA",
+      "month": 7,
+      "prediction": 17.0,
+      "actual": 35
+    },
+    {
+      "method": "persistence",
+      "region": "South West WA",
+      "month": 8,
+      "prediction": 43.0,
+      "actual": 31
+    },
+    {
+      "method": "persistence",
+      "region": "South West WA",
+      "month": 9,
+      "prediction": 147.0,
+      "actual": 96
+    },
+    {
+      "method": "persistence",
+      "region": "South West WA",
+      "month": 10,
+      "prediction": 200.0,
+      "actual": 191
+    },
+    {
+      "method": "ensemble",
+      "region": "All Australia",
+      "month": 1,
+      "prediction": 11929.2,
+      "actual": 8900
+    },
+    {
+      "method": "ensemble",
+      "region": "All Australia",
+      "month": 2,
+      "prediction": 6315.5,
+      "actual": 1472
+    },
+    {
+      "method": "ensemble",
+      "region": "All Australia",
+      "month": 3,
+      "prediction": 7198.7,
+      "actual": 3583
+    },
+    {
+      "method": "ensemble",
+      "region": "All Australia",
+      "month": 4,
+      "prediction": 13173.8,
+      "actual": 15649
+    },
+    {
+      "method": "ensemble",
+      "region": "All Australia",
+      "month": 5,
+      "prediction": 22744.8,
+      "actual": 11107
+    },
+    {
+      "method": "ensemble",
+      "region": "All Australia",
+      "month": 6,
+      "prediction": 15494.8,
+      "actual": 15303
+    },
+    {
+      "method": "ensemble",
+      "region": "All Australia",
+      "month": 7,
+      "prediction": 15922.0,
+      "actual": 21004
+    },
+    {
+      "method": "ensemble",
+      "region": "All Australia",
+      "month": 8,
+      "prediction": 20641.0,
+      "actual": 14304
+    },
+    {
+      "method": "ensemble",
+      "region": "All Australia",
+      "month": 9,
+      "prediction": 25369.5,
+      "actual": 16152
+    },
+    {
+      "method": "ensemble",
+      "region": "All Australia",
+      "month": 10,
+      "prediction": 68600.2,
+      "actual": 20933
+    },
+    {
+      "method": "ensemble",
+      "region": "Top End (NT)",
+      "month": 1,
+      "prediction": 252.0,
+      "actual": 54
+    },
+    {
+      "method": "ensemble",
+      "region": "Top End (NT)",
+      "month": 2,
+      "prediction": 85.8,
+      "actual": 8
+    },
+    {
+      "method": "ensemble",
+      "region": "Top End (NT)",
+      "month": 3,
+      "prediction": 205.2,
+      "actual": 28
+    },
+    {
+      "method": "ensemble",
+      "region": "Top End (NT)",
+      "month": 4,
+      "prediction": 1187.7,
+      "actual": 970
+    },
+    {
+      "method": "ensemble",
+      "region": "Top End (NT)",
+      "month": 5,
+      "prediction": 6797.3,
+      "actual": 3736
+    },
+    {
+      "method": "ensemble",
+      "region": "Top End (NT)",
+      "month": 6,
+      "prediction": 8341.0,
+      "actual": 7072
+    },
+    {
+      "method": "ensemble",
+      "region": "Top End (NT)",
+      "month": 7,
+      "prediction": 6905.3,
+      "actual": 9675
+    },
+    {
+      "method": "ensemble",
+      "region": "Top End (NT)",
+      "month": 8,
+      "prediction": 7008.3,
+      "actual": 4646
+    },
+    {
+      "method": "ensemble",
+      "region": "Top End (NT)",
+      "month": 9,
+      "prediction": 3999.5,
+      "actual": 4317
+    },
+    {
+      "method": "ensemble",
+      "region": "Top End (NT)",
+      "month": 10,
+      "prediction": 6257.2,
+      "actual": 4486
+    },
+    {
+      "method": "ensemble",
+      "region": "Kimberley (WA)",
+      "month": 1,
+      "prediction": 464.0,
+      "actual": 145
+    },
+    {
+      "method": "ensemble",
+      "region": "Kimberley (WA)",
+      "month": 2,
+      "prediction": 248.0,
+      "actual": 4
+    },
+    {
+      "method": "ensemble",
+      "region": "Kimberley (WA)",
+      "month": 3,
+      "prediction": 1119.0,
+      "actual": 666
+    },
+    {
+      "method": "ensemble",
+      "region": "Kimberley (WA)",
+      "month": 4,
+      "prediction": 3010.0,
+      "actual": 5797
+    },
+    {
+      "method": "ensemble",
+      "region": "Kimberley (WA)",
+      "month": 5,
+      "prediction": 7416.3,
+      "actual": 1964
+    },
+    {
+      "method": "ensemble",
+      "region": "Kimberley (WA)",
+      "month": 6,
+      "prediction": 2081.0,
+      "actual": 2892
+    },
+    {
+      "method": "ensemble",
+      "region": "Kimberley (WA)",
+      "month": 7,
+      "prediction": 1752.5,
+      "actual": 1580
+    },
+    {
+      "method": "ensemble",
+      "region": "Kimberley (WA)",
+      "month": 8,
+      "prediction": 3273.0,
+      "actual": 1082
+    },
+    {
+      "method": "ensemble",
+      "region": "Kimberley (WA)",
+      "month": 9,
+      "prediction": 6471.7,
+      "actual": 1007
+    },
+    {
+      "method": "ensemble",
+      "region": "Kimberley (WA)",
+      "month": 10,
+      "prediction": 8581.8,
+      "actual": 2595
+    },
+    {
+      "method": "ensemble",
+      "region": "Cape York (QLD)",
+      "month": 1,
+      "prediction": 9.7,
+      "actual": 5
+    },
+    {
+      "method": "ensemble",
+      "region": "Cape York (QLD)",
+      "month": 2,
+      "prediction": 0.7,
+      "actual": 7
+    },
+    {
+      "method": "ensemble",
+      "region": "Cape York (QLD)",
+      "month": 3,
+      "prediction": 0.0,
+      "actual": 0
+    },
+    {
+      "method": "ensemble",
+      "region": "Cape York (QLD)",
+      "month": 4,
+      "prediction": 2.5,
+      "actual": 16
+    },
+    {
+      "method": "ensemble",
+      "region": "Cape York (QLD)",
+      "month": 5,
+      "prediction": 212.3,
+      "actual": 424
+    },
+    {
+      "method": "ensemble",
+      "region": "Cape York (QLD)",
+      "month": 6,
+      "prediction": 1194.5,
+      "actual": 2614
+    },
+    {
+      "method": "ensemble",
+      "region": "Cape York (QLD)",
+      "month": 7,
+      "prediction": 2882.8,
+      "actual": 4632
+    },
+    {
+      "method": "ensemble",
+      "region": "Cape York (QLD)",
+      "month": 8,
+      "prediction": 1876.7,
+      "actual": 1406
+    },
+    {
+      "method": "ensemble",
+      "region": "Cape York (QLD)",
+      "month": 9,
+      "prediction": 1078.2,
+      "actual": 1527
+    },
+    {
+      "method": "ensemble",
+      "region": "Cape York (QLD)",
+      "month": 10,
+      "prediction": 3800.5,
+      "actual": 1770
+    },
+    {
+      "method": "ensemble",
+      "region": "Central Australia",
+      "month": 1,
+      "prediction": 2129.3,
+      "actual": 621
+    },
+    {
+      "method": "ensemble",
+      "region": "Central Australia",
+      "month": 2,
+      "prediction": 1437.2,
+      "actual": 10
+    },
+    {
+      "method": "ensemble",
+      "region": "Central Australia",
+      "month": 3,
+      "prediction": 339.0,
+      "actual": 102
+    },
+    {
+      "method": "ensemble",
+      "region": "Central Australia",
+      "month": 4,
+      "prediction": 154.0,
+      "actual": 199
+    },
+    {
+      "method": "ensemble",
+      "region": "Central Australia",
+      "month": 5,
+      "prediction": 245.2,
+      "actual": 108
+    },
+    {
+      "method": "ensemble",
+      "region": "Central Australia",
+      "month": 6,
+      "prediction": 188.7,
+      "actual": 113
+    },
+    {
+      "method": "ensemble",
+      "region": "Central Australia",
+      "month": 7,
+      "prediction": 271.7,
+      "actual": 132
+    },
+    {
+      "method": "ensemble",
+      "region": "Central Australia",
+      "month": 8,
+      "prediction": 461.0,
+      "actual": 1363
+    },
+    {
+      "method": "ensemble",
+      "region": "Central Australia",
+      "month": 9,
+      "prediction": 1435.0,
+      "actual": 1065
+    },
+    {
+      "method": "ensemble",
+      "region": "Central Australia",
+      "month": 10,
+      "prediction": 7909.5,
+      "actual": 1113
+    },
+    {
+      "method": "ensemble",
+      "region": "South East QLD",
+      "month": 1,
+      "prediction": 39.5,
+      "actual": 41
+    },
+    {
+      "method": "ensemble",
+      "region": "South East QLD",
+      "month": 2,
+      "prediction": 42.2,
+      "actual": 69
+    },
+    {
+      "method": "ensemble",
+      "region": "South East QLD",
+      "month": 3,
+      "prediction": 28.2,
+      "actual": 61
+    },
+    {
+      "method": "ensemble",
+      "region": "South East QLD",
+      "month": 4,
+      "prediction": 52.3,
+      "actual": 119
+    },
+    {
+      "method": "ensemble",
+      "region": "South East QLD",
+      "month": 5,
+      "prediction": 72.3,
+      "actual": 27
+    },
+    {
+      "method": "ensemble",
+      "region": "South East QLD",
+      "month": 6,
+      "prediction": 75.0,
+      "actual": 81
+    },
+    {
+      "method": "ensemble",
+      "region": "South East QLD",
+      "month": 7,
+      "prediction": 127.2,
+      "actual": 168
+    },
+    {
+      "method": "ensemble",
+      "region": "South East QLD",
+      "month": 8,
+      "prediction": 529.2,
+      "actual": 297
+    },
+    {
+      "method": "ensemble",
+      "region": "South East QLD",
+      "month": 9,
+      "prediction": 756.3,
+      "actual": 614
+    },
+    {
+      "method": "ensemble",
+      "region": "South East QLD",
+      "month": 10,
+      "prediction": 547.2,
+      "actual": 126
+    },
+    {
+      "method": "ensemble",
+      "region": "South West WA",
+      "month": 1,
+      "prediction": 199.8,
+      "actual": 334
+    },
+    {
+      "method": "ensemble",
+      "region": "South West WA",
+      "month": 2,
+      "prediction": 346.3,
+      "actual": 37
+    },
+    {
+      "method": "ensemble",
+      "region": "South West WA",
+      "month": 3,
+      "prediction": 535.8,
+      "actual": 267
+    },
+    {
+      "method": "ensemble",
+      "region": "South West WA",
+      "month": 4,
+      "prediction": 1711.8,
+      "actual": 2220
+    },
+    {
+      "method": "ensemble",
+      "region": "South West WA",
+      "month": 5,
+      "prediction": 1308.2,
+      "actual": 1156
+    },
+    {
+      "method": "ensemble",
+      "region": "South West WA",
+      "month": 6,
+      "prediction": 108.5,
+      "actual": 81
+    },
+    {
+      "method": "ensemble",
+      "region": "South West WA",
+      "month": 7,
+      "prediction": 26.5,
+      "actual": 35
+    },
+    {
+      "method": "ensemble",
+      "region": "South West WA",
+      "month": 8,
+      "prediction": 49.7,
+      "actual": 31
+    },
+    {
+      "method": "ensemble",
+      "region": "South West WA",
+      "month": 9,
+      "prediction": 189.3,
+      "actual": 96
+    },
+    {
+      "method": "ensemble",
+      "region": "South West WA",
+      "month": 10,
+      "prediction": 245.0,
+      "actual": 191
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "All Australia",
+      "month": 1,
+      "prediction": 11929.2,
+      "actual": 8900
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "All Australia",
+      "month": 2,
+      "prediction": 6315.5,
+      "actual": 1472
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "All Australia",
+      "month": 3,
+      "prediction": 7198.7,
+      "actual": 3583
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "All Australia",
+      "month": 4,
+      "prediction": 13173.8,
+      "actual": 15649
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "All Australia",
+      "month": 5,
+      "prediction": 22744.8,
+      "actual": 11107
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "All Australia",
+      "month": 6,
+      "prediction": 15512.9,
+      "actual": 15303
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "All Australia",
+      "month": 7,
+      "prediction": 15228.7,
+      "actual": 21004
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "All Australia",
+      "month": 8,
+      "prediction": 19931.7,
+      "actual": 14304
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "All Australia",
+      "month": 9,
+      "prediction": 31864.7,
+      "actual": 16152
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "All Australia",
+      "month": 10,
+      "prediction": 85397.1,
+      "actual": 20933
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Top End (NT)",
+      "month": 1,
+      "prediction": 252.0,
+      "actual": 54
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Top End (NT)",
+      "month": 2,
+      "prediction": 85.8,
+      "actual": 8
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Top End (NT)",
+      "month": 3,
+      "prediction": 205.2,
+      "actual": 28
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Top End (NT)",
+      "month": 4,
+      "prediction": 1187.7,
+      "actual": 970
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Top End (NT)",
+      "month": 5,
+      "prediction": 6797.3,
+      "actual": 3736
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Top End (NT)",
+      "month": 6,
+      "prediction": 7259.7,
+      "actual": 7072
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Top End (NT)",
+      "month": 7,
+      "prediction": 6865.2,
+      "actual": 9675
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Top End (NT)",
+      "month": 8,
+      "prediction": 6547.9,
+      "actual": 4646
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Top End (NT)",
+      "month": 9,
+      "prediction": 4884.3,
+      "actual": 4317
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Top End (NT)",
+      "month": 10,
+      "prediction": 7610.4,
+      "actual": 4486
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Kimberley (WA)",
+      "month": 1,
+      "prediction": 464.0,
+      "actual": 145
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Kimberley (WA)",
+      "month": 2,
+      "prediction": 248.0,
+      "actual": 4
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Kimberley (WA)",
+      "month": 3,
+      "prediction": 1119.0,
+      "actual": 666
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Kimberley (WA)",
+      "month": 4,
+      "prediction": 3010.0,
+      "actual": 5797
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Kimberley (WA)",
+      "month": 5,
+      "prediction": 7416.3,
+      "actual": 1964
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Kimberley (WA)",
+      "month": 6,
+      "prediction": 2129.0,
+      "actual": 2892
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Kimberley (WA)",
+      "month": 7,
+      "prediction": 1456.0,
+      "actual": 1580
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Kimberley (WA)",
+      "month": 8,
+      "prediction": 2903.7,
+      "actual": 1082
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Kimberley (WA)",
+      "month": 9,
+      "prediction": 5552.1,
+      "actual": 1007
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Kimberley (WA)",
+      "month": 10,
+      "prediction": 11343.9,
+      "actual": 2595
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Cape York (QLD)",
+      "month": 1,
+      "prediction": 9.7,
+      "actual": 5
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Cape York (QLD)",
+      "month": 2,
+      "prediction": 0.7,
+      "actual": 7
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Cape York (QLD)",
+      "month": 3,
+      "prediction": 0.0,
+      "actual": 0
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Cape York (QLD)",
+      "month": 4,
+      "prediction": 2.5,
+      "actual": 16
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Cape York (QLD)",
+      "month": 5,
+      "prediction": 212.3,
+      "actual": 424
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Cape York (QLD)",
+      "month": 6,
+      "prediction": 1527.0,
+      "actual": 2614
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Cape York (QLD)",
+      "month": 7,
+      "prediction": 2832.2,
+      "actual": 4632
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Cape York (QLD)",
+      "month": 8,
+      "prediction": 1749.1,
+      "actual": 1406
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Cape York (QLD)",
+      "month": 9,
+      "prediction": 1498.1,
+      "actual": 1527
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Cape York (QLD)",
+      "month": 10,
+      "prediction": 4107.0,
+      "actual": 1770
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Central Australia",
+      "month": 1,
+      "prediction": 2129.3,
+      "actual": 621
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Central Australia",
+      "month": 2,
+      "prediction": 1437.2,
+      "actual": 10
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Central Australia",
+      "month": 3,
+      "prediction": 339.0,
+      "actual": 102
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Central Australia",
+      "month": 4,
+      "prediction": 154.0,
+      "actual": 199
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Central Australia",
+      "month": 5,
+      "prediction": 245.2,
+      "actual": 108
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Central Australia",
+      "month": 6,
+      "prediction": 331.4,
+      "actual": 113
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Central Australia",
+      "month": 7,
+      "prediction": 203.8,
+      "actual": 132
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Central Australia",
+      "month": 8,
+      "prediction": 487.7,
+      "actual": 1363
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Central Australia",
+      "month": 9,
+      "prediction": 2869.7,
+      "actual": 1065
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "Central Australia",
+      "month": 10,
+      "prediction": 15189.3,
+      "actual": 1113
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "South East QLD",
+      "month": 1,
+      "prediction": 39.5,
+      "actual": 41
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "South East QLD",
+      "month": 2,
+      "prediction": 42.2,
+      "actual": 69
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "South East QLD",
+      "month": 3,
+      "prediction": 28.2,
+      "actual": 61
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "South East QLD",
+      "month": 4,
+      "prediction": 52.3,
+      "actual": 119
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "South East QLD",
+      "month": 5,
+      "prediction": 72.3,
+      "actual": 27
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "South East QLD",
+      "month": 6,
+      "prediction": 97.0,
+      "actual": 81
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "South East QLD",
+      "month": 7,
+      "prediction": 154.8,
+      "actual": 168
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "South East QLD",
+      "month": 8,
+      "prediction": 447.4,
+      "actual": 297
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "South East QLD",
+      "month": 9,
+      "prediction": 670.6,
+      "actual": 614
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "South East QLD",
+      "month": 10,
+      "prediction": 635.8,
+      "actual": 126
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "South West WA",
+      "month": 1,
+      "prediction": 199.8,
+      "actual": 334
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "South West WA",
+      "month": 2,
+      "prediction": 346.3,
+      "actual": 37
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "South West WA",
+      "month": 3,
+      "prediction": 535.8,
+      "actual": 267
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "South West WA",
+      "month": 4,
+      "prediction": 1711.8,
+      "actual": 2220
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "South West WA",
+      "month": 5,
+      "prediction": 1308.2,
+      "actual": 1156
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "South West WA",
+      "month": 6,
+      "prediction": 103.3,
+      "actual": 81
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "South West WA",
+      "month": 7,
+      "prediction": 25.3,
+      "actual": 35
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "South West WA",
+      "month": 8,
+      "prediction": 70.4,
+      "actual": 31
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "South West WA",
+      "month": 9,
+      "prediction": 201.6,
+      "actual": 96
+    },
+    {
+      "method": "ensemble_enso",
+      "region": "South West WA",
+      "month": 10,
+      "prediction": 284.0,
+      "actual": 191
+    },
+    {
+      "method": "ml_gbm",
+      "region": "All Australia",
+      "month": 1,
+      "prediction": 16660.9,
+      "actual": 8900
+    },
+    {
+      "method": "ml_gbm",
+      "region": "All Australia",
+      "month": 2,
+      "prediction": 5797.6,
+      "actual": 1472
+    },
+    {
+      "method": "ml_gbm",
+      "region": "All Australia",
+      "month": 3,
+      "prediction": 6394.5,
+      "actual": 3583
+    },
+    {
+      "method": "ml_gbm",
+      "region": "All Australia",
+      "month": 4,
+      "prediction": 11108.3,
+      "actual": 15649
+    },
+    {
+      "method": "ml_gbm",
+      "region": "All Australia",
+      "month": 5,
+      "prediction": 18370.1,
+      "actual": 11107
+    },
+    {
+      "method": "ml_gbm",
+      "region": "All Australia",
+      "month": 6,
+      "prediction": 15760.4,
+      "actual": 15303
+    },
+    {
+      "method": "ml_gbm",
+      "region": "All Australia",
+      "month": 7,
+      "prediction": 18285.9,
+      "actual": 21004
+    },
+    {
+      "method": "ml_gbm",
+      "region": "All Australia",
+      "month": 8,
+      "prediction": 20287.0,
+      "actual": 14304
+    },
+    {
+      "method": "ml_gbm",
+      "region": "All Australia",
+      "month": 9,
+      "prediction": 19591.3,
+      "actual": 16152
+    },
+    {
+      "method": "ml_gbm",
+      "region": "All Australia",
+      "month": 10,
+      "prediction": 46220.3,
+      "actual": 20933
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Top End (NT)",
+      "month": 1,
+      "prediction": 347.0,
+      "actual": 54
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Top End (NT)",
+      "month": 2,
+      "prediction": 139.3,
+      "actual": 8
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Top End (NT)",
+      "month": 3,
+      "prediction": 238.2,
+      "actual": 28
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Top End (NT)",
+      "month": 4,
+      "prediction": 1210.5,
+      "actual": 970
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Top End (NT)",
+      "month": 5,
+      "prediction": 5279.4,
+      "actual": 3736
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Top End (NT)",
+      "month": 6,
+      "prediction": 8923.4,
+      "actual": 7072
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Top End (NT)",
+      "month": 7,
+      "prediction": 7855.2,
+      "actual": 9675
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Top End (NT)",
+      "month": 8,
+      "prediction": 6863.2,
+      "actual": 4646
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Top End (NT)",
+      "month": 9,
+      "prediction": 3479.0,
+      "actual": 4317
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Top End (NT)",
+      "month": 10,
+      "prediction": 4394.1,
+      "actual": 4486
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Kimberley (WA)",
+      "month": 1,
+      "prediction": 853.4,
+      "actual": 145
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Kimberley (WA)",
+      "month": 2,
+      "prediction": 322.0,
+      "actual": 4
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Kimberley (WA)",
+      "month": 3,
+      "prediction": 593.2,
+      "actual": 666
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Kimberley (WA)",
+      "month": 4,
+      "prediction": 2314.4,
+      "actual": 5797
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Kimberley (WA)",
+      "month": 5,
+      "prediction": 5667.2,
+      "actual": 1964
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Kimberley (WA)",
+      "month": 6,
+      "prediction": 2170.0,
+      "actual": 2892
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Kimberley (WA)",
+      "month": 7,
+      "prediction": 2905.6,
+      "actual": 1580
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Kimberley (WA)",
+      "month": 8,
+      "prediction": 3697.2,
+      "actual": 1082
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Kimberley (WA)",
+      "month": 9,
+      "prediction": 3984.0,
+      "actual": 1007
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Kimberley (WA)",
+      "month": 10,
+      "prediction": 5540.3,
+      "actual": 2595
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Cape York (QLD)",
+      "month": 1,
+      "prediction": 56.6,
+      "actual": 5
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Cape York (QLD)",
+      "month": 2,
+      "prediction": 31.2,
+      "actual": 7
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Cape York (QLD)",
+      "month": 3,
+      "prediction": 37.6,
+      "actual": 0
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Cape York (QLD)",
+      "month": 4,
+      "prediction": 29.8,
+      "actual": 16
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Cape York (QLD)",
+      "month": 5,
+      "prediction": 203.7,
+      "actual": 424
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Cape York (QLD)",
+      "month": 6,
+      "prediction": 942.6,
+      "actual": 2614
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Cape York (QLD)",
+      "month": 7,
+      "prediction": 2967.6,
+      "actual": 4632
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Cape York (QLD)",
+      "month": 8,
+      "prediction": 1683.2,
+      "actual": 1406
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Cape York (QLD)",
+      "month": 9,
+      "prediction": 782.0,
+      "actual": 1527
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Cape York (QLD)",
+      "month": 10,
+      "prediction": 1951.6,
+      "actual": 1770
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Central Australia",
+      "month": 1,
+      "prediction": 2210.9,
+      "actual": 621
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Central Australia",
+      "month": 2,
+      "prediction": 544.1,
+      "actual": 10
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Central Australia",
+      "month": 3,
+      "prediction": 271.0,
+      "actual": 102
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Central Australia",
+      "month": 4,
+      "prediction": 187.7,
+      "actual": 199
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Central Australia",
+      "month": 5,
+      "prediction": 234.2,
+      "actual": 108
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Central Australia",
+      "month": 6,
+      "prediction": 188.4,
+      "actual": 113
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Central Australia",
+      "month": 7,
+      "prediction": 302.7,
+      "actual": 132
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Central Australia",
+      "month": 8,
+      "prediction": 395.4,
+      "actual": 1363
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Central Australia",
+      "month": 9,
+      "prediction": 565.5,
+      "actual": 1065
+    },
+    {
+      "method": "ml_gbm",
+      "region": "Central Australia",
+      "month": 10,
+      "prediction": 2740.0,
+      "actual": 1113
+    },
+    {
+      "method": "ml_gbm",
+      "region": "South East QLD",
+      "month": 1,
+      "prediction": 83.0,
+      "actual": 41
+    },
+    {
+      "method": "ml_gbm",
+      "region": "South East QLD",
+      "month": 2,
+      "prediction": 66.9,
+      "actual": 69
+    },
+    {
+      "method": "ml_gbm",
+      "region": "South East QLD",
+      "month": 3,
+      "prediction": 48.9,
+      "actual": 61
+    },
+    {
+      "method": "ml_gbm",
+      "region": "South East QLD",
+      "month": 4,
+      "prediction": 58.2,
+      "actual": 119
+    },
+    {
+      "method": "ml_gbm",
+      "region": "South East QLD",
+      "month": 5,
+      "prediction": 62.6,
+      "actual": 27
+    },
+    {
+      "method": "ml_gbm",
+      "region": "South East QLD",
+      "month": 6,
+      "prediction": 59.8,
+      "actual": 81
+    },
+    {
+      "method": "ml_gbm",
+      "region": "South East QLD",
+      "month": 7,
+      "prediction": 89.6,
+      "actual": 168
+    },
+    {
+      "method": "ml_gbm",
+      "region": "South East QLD",
+      "month": 8,
+      "prediction": 479.9,
+      "actual": 297
+    },
+    {
+      "method": "ml_gbm",
+      "region": "South East QLD",
+      "month": 9,
+      "prediction": 633.4,
+      "actual": 614
+    },
+    {
+      "method": "ml_gbm",
+      "region": "South East QLD",
+      "month": 10,
+      "prediction": 517.1,
+      "actual": 126
+    },
+    {
+      "method": "ml_gbm",
+      "region": "South West WA",
+      "month": 1,
+      "prediction": 294.5,
+      "actual": 334
+    },
+    {
+      "method": "ml_gbm",
+      "region": "South West WA",
+      "month": 2,
+      "prediction": 288.5,
+      "actual": 37
+    },
+    {
+      "method": "ml_gbm",
+      "region": "South West WA",
+      "month": 3,
+      "prediction": 565.9,
+      "actual": 267
+    },
+    {
+      "method": "ml_gbm",
+      "region": "South West WA",
+      "month": 4,
+      "prediction": 1417.4,
+      "actual": 2220
+    },
+    {
+      "method": "ml_gbm",
+      "region": "South West WA",
+      "month": 5,
+      "prediction": 1267.7,
+      "actual": 1156
+    },
+    {
+      "method": "ml_gbm",
+      "region": "South West WA",
+      "month": 6,
+      "prediction": 144.6,
+      "actual": 81
+    },
+    {
+      "method": "ml_gbm",
+      "region": "South West WA",
+      "month": 7,
+      "prediction": 57.3,
+      "actual": 35
+    },
+    {
+      "method": "ml_gbm",
+      "region": "South West WA",
+      "month": 8,
+      "prediction": 50.9,
+      "actual": 31
+    },
+    {
+      "method": "ml_gbm",
+      "region": "South West WA",
+      "month": 9,
+      "prediction": 234.5,
+      "actual": 96
+    },
+    {
+      "method": "ml_gbm",
+      "region": "South West WA",
+      "month": 10,
+      "prediction": 256.2,
+      "actual": 191
+    }
+  ]
+}
